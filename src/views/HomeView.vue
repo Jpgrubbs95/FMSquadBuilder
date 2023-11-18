@@ -1,8 +1,7 @@
 <script setup>
-import SquadTable from '../components/SquadTable.vue';
-
+import SquadTable from '../components/SquadTable.vue'
 </script>
 
 <template>
-  <SquadTable/>
+  <SquadTable />
 </template>
