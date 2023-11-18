@@ -1,6 +1,6 @@
 <template>
 
-<DataTable :value="squad" tableStyle="min-width: 50rem; height:80vh" :class="`p-datatable-sm`" scrollable scrollHeight="80vh">
+<DataTable :value="squadStore.squad" tableStyle="min-width: 50rem; height:80vh" :class="`p-datatable-sm`" scrollable scrollHeight="80vh">
     <template #header>
         <div class="flex flex-wrap align-items-center justify-content-between gap-2">
             <span class="text-xl text-900 font-bold">Squad</span>
@@ -23,12 +23,12 @@
 <script setup>
 
 import { ref, computed } from 'vue';
+import {sweeperKeeperDefend} from '../utils/positionGradeCalculator';
+import {useSquadStore} from '../stores/squad';
 
-const squad = ref();
-const headerRow = ref();
+const squadStore = useSquadStore();
 
 function onUpload(event){
-    debugger;
     var reader = new FileReader();
     reader.readAsText(event.files[0], "UTF-8");
     reader.onload = function (evt) {
@@ -41,8 +41,8 @@ function onUpload(event){
 const columns = computed(() => {
     let columns = [];
 
-    if(headerRow.value){
-        for (var key of Object.keys(headerRow.value)) {
+    if(squadStore.squadHeaders){
+        for (var key of Object.keys(squadStore.squadHeaders)) {
             columns.push(
                 {
                     field: key,
@@ -72,8 +72,17 @@ function parseTable(table) {
     items.push(item);
   }
 
-  headerRow.value = items.shift();
-  squad.value = items;
+  squadStore.squadHeaders = items.shift();
+  squadStore.squad = items;
+
+  populateSweeperKeeperDefense();
+}
+
+function populateSweeperKeeperDefense(){
+    for(let player of squadStore.squad){
+        sweeperKeeperDefend(player);
+    }
+    squadStore.squadHeaders.skd = 'skd';
 }
 
 </script>
