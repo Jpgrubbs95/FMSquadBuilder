@@ -13,6 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.1.1",
     "@vueuse/core": "^10.6.1",
     "chart.js": "^4.4.0",
     "pinia": "^2.1.7",
