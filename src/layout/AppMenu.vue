@@ -8,7 +8,8 @@ const model = ref([
     label: 'Squad',
     items: [
       { label: 'Load Squad', icon: 'pi pi-fw pi-users', to: '/' },
-      { label: 'Role Evaluation', icon: 'pi pi-fw pi-calculator', to: '/roleGrades' }
+      { label: 'Squad Designer', icon: 'pi pi-fw pi-calculator', to: '/roleGrades' },
+      { label: 'Squad Analysis', icon: 'pi pi-fw pi-chart-line', to: '/squadAnalysis' }
     ]
   }
 

@@ -45,7 +45,6 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { sweeperKeeperDefend } from '../utils/positionGradeCalculator'
 import { useSquadStore } from '../stores/squad'
 
 const squadStore = useSquadStore()
@@ -85,20 +84,16 @@ function parseTable(table) {
     for (const [index, cell] of [...row.children].entries()) {
       item[headers[index]] = cell.innerText
     }
-
+    if ('Salary' in item && typeof item['Salary'] === 'string') {
+      try {
+        item.dollars = parseInt(item['Salary'].replace(/[^\d.-]/g, ''))
+      } catch (e) {
+        console.error('Unable to parse salary value')
+      }
+    }
     items.push(item)
   }
-
   squadStore.squadHeaders = items.shift()
   squadStore.squad = items
-
-  populateSweeperKeeperDefense()
-}
-
-function populateSweeperKeeperDefense() {
-  for (let player of squadStore.squad) {
-    sweeperKeeperDefend(player)
-  }
-  squadStore.squadHeaders.skd = 'skd'
 }
 </script>

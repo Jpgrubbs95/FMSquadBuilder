@@ -29,9 +29,13 @@ const onTopBarMenuButton = () => {
 const onChangeThemeClick = () => {
   layoutConfig.darkTheme.value = !layoutConfig.darkTheme.value
   if (layoutConfig.darkTheme.value) {
-    PrimeVue.changeTheme('lara-light-blue', 'lara-dark-blue', 'theme-link', () => {})
+    PrimeVue.changeTheme('lara-light-blue', 'lara-dark-blue', 'theme-link', () => {
+      layoutConfig.darkThemeToggled.value = true
+    })
   } else {
-    PrimeVue.changeTheme('lara-dark-blue', 'lara-light-blue', 'theme-link', () => {})
+    PrimeVue.changeTheme('lara-dark-blue', 'lara-light-blue', 'theme-link', () => {
+      layoutConfig.darkThemeToggled.value = false
+    })
   }
 }
 const topbarMenuClasses = computed(() => {
@@ -75,7 +79,7 @@ const isOutsideClicked = (event) => {
   <div class="layout-topbar">
     <router-link to="/" class="layout-topbar-logo">
       <img :src="logoUrl" alt="logo" />
-      <span>SAKAI</span>
+      <span>FM Squad Builder</span>
     </router-link>
 
     <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">

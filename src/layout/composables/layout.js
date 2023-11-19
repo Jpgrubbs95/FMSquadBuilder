@@ -7,7 +7,8 @@ const layoutConfig = reactive({
   menuMode: 'static',
   theme: 'lara-dark-blue',
   scale: 14,
-  activeMenuItem: null
+  activeMenuItem: null,
+  darkThemeToggled: true
 })
 
 const layoutState = reactive({
