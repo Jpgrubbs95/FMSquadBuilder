@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AppLayout from '../layout/AppLayout.vue'
 import RoleGradeView from '../views/RoleGradeView.vue'
 import SquadAnalysis from '../views/SquadAnalysis.vue'
+import SquadFinances from '../views/SquadFinancesView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -25,6 +26,11 @@ const router = createRouter({
           path: '/squadAnalysis',
           name: 'squadAnalysis',
           component: SquadAnalysis
+        },
+        {
+          path: '/squadFinances',
+          name: 'squadFinances',
+          component: SquadFinances
         }
       ]
     },

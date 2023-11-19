@@ -75,6 +75,40 @@ export const useSquadStore = defineStore('squad', () => {
     }
   })
 
+  const playerSalaryTotals = computed(() => {
+    let keyPlayerTotal = 0
+    let squadPlayerTotal = 0
+    let backupPlayerTotal = 0
+    let youthTotal = 0
+
+    for (let player of squad.value) {
+      if (
+        player['Agreed Playing Time'] === 'Star Player' ||
+        player['Agreed Playing Time'] === 'Important Player'
+      ) {
+        keyPlayerTotal += player.dollars
+      } else if (
+        player['Agreed Playing Time'] === 'Regular Starter' ||
+        player['Agreed Playing Time'] === 'First-Choice Goalkeeper'
+      ) {
+        squadPlayerTotal += player.dollars
+      } else if (
+        player['Agreed Playing Time'] === 'Squad Player' ||
+        player['Agreed Playing Time'] === 'Fringe Player' ||
+        player['Agreed Playing Time'] === 'Backup'
+      ) {
+        backupPlayerTotal += player.dollars
+      } else {
+        youthTotal += player.dollars
+      }
+      // } else {
+      //   console.log(player['Agreed Playing Time'])
+      // }
+    }
+
+    return { keyPlayerTotal, squadPlayerTotal, backupPlayerTotal, youthTotal }
+  })
+
   return {
     squad,
     squadHeaders,
@@ -82,6 +116,7 @@ export const useSquadStore = defineStore('squad', () => {
     startersAverage,
     backupsAverage,
     largestDropOff,
-    bestValues
+    bestValues,
+    playerSalaryTotals
   }
 })

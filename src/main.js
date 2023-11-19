@@ -111,9 +111,9 @@ import TreeTable from 'primevue/treetable'
 import TriStateCheckbox from 'primevue/tristatecheckbox'
 import VirtualScroller from 'primevue/virtualscroller'
 
-import { inject } from '@vercel/analytics';
- 
-inject();
+// import { inject } from '@vercel/analytics';
+
+// inject();
 
 const app = createApp(App)
 
