@@ -1,7 +1,7 @@
 <template>
   <div class="grid">
     <div class="col">
-      <Card>
+      <Card class="fullscreen-card">
         <template #title>
           <div class="flex flex-wrap align-items-center justify-content-between gap-2">
             <span class="text-xl text-900 font-bold">Role Grades</span>
@@ -21,9 +21,10 @@
           <DataTable
             :value="squadStore.squad"
             tableStyle="height:80vh"
-            :class="`p-datatable-sm`"
+            :class="`p-datatable-sm fullscreen-card-content`"
             scrollable
-            scrollHeight="80vh"
+            :sortField="sortField"
+            scrollHeight="flex"
           >
             <Column
               v-for="col of columns"
@@ -45,7 +46,11 @@
     </div>
 
     <div class="col">
-      <SquadDepthChart show-actions></SquadDepthChart>
+      <SquadDepthChart
+        show-actions
+        class="fullscreen-card"
+        table-class="fullscreen-card-content"
+      ></SquadDepthChart>
     </div>
   </div>
 </template>
@@ -62,6 +67,7 @@ const roles = ref(allRoles)
 
 //Ratings table
 const selectedRoles = ref([])
+const sortField = ref()
 
 const columns = ref([
   { field: 'Name', header: 'Name' },
@@ -89,6 +95,14 @@ watch(selectedRoles, () => {
         calculatePlayerAbilityForRole(player, role.value)
       }
     }
+  }
+  if (selectedRoles.value.length) {
+    sortField.value = selectedRoles.value[selectedRoles.value.length - 1].value
+    squadStore.squad.sort((a, b) => {
+      if (parseFloat(a[sortField.value]) > parseFloat(b[sortField.value])) return -1
+      else if (parseFloat(a[sortField.value]) < parseFloat(b[sortField.value])) return 1
+      else return 0
+    })
   }
 })
 </script>

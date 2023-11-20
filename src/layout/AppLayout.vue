@@ -80,4 +80,12 @@ const isOutsideClicked = (event) => {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.fullscreen-card {
+  height: calc(100vh - 12rem);
+}
+
+.fullscreen-card-content {
+  height: calc(100vh - 20rem);
+}
+</style>

@@ -102,10 +102,13 @@ const isOutsideClicked = (event) => {
         <i class="pi pi-cog"></i>
         <span>Download View</span>
       </button>
-      <button @click="onTopBarMenuButton()" class="p-link layout-topbar-button">
-        <i class="pi pi-user"></i>
-        <span>Profile</span>
-      </button>
+      <a
+        href="https://github.com/Jpgrubbs95/FMSquadBuilder"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="p-button p-link layout-topbar-button"
+        ><i class="pi pi-github"></i
+      ></a>
       <button @click="onChangeThemeClick()" class="p-link layout-topbar-button">
         <i
           class="pi"

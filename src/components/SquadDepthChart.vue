@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <Card v-bind="$attrs">
     <template #title>
       <div class="flex flex-wrap align-items-center justify-content-between gap-2">
         <span class="text-xl text-900 font-bold">Squad Depth Chart</span>
@@ -14,9 +14,9 @@
     <template #content>
       <DataTable
         :value="squadStore.startersAndBackups"
-        :class="`p-datatable-sm`"
+        :class="`p-datatable-sm ${props.tableClass}`"
         scrollable
-        scrollHeight="80vh"
+        scrollHeight="flex"
       >
         <Column v-if="props.showActions" field="order">
           <template #body="slotProps">
@@ -62,7 +62,9 @@
   <Dialog
     v-model:visible="addModalVisible"
     modal
+    class="mr-7"
     header="Add New Position"
+    position="right"
     :style="{ width: '50rem' }"
     :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
   >
@@ -113,6 +115,10 @@ const props = defineProps({
   showActions: {
     type: Boolean,
     default: false
+  },
+  tableClass: {
+    type: String,
+    default: null
   }
 })
 
@@ -182,6 +188,9 @@ function addNewPosition() {
     backupRating: selectedBackup.value[selectedRole.value.value]
   })
   sortStartersAndBackups()
+  selectedStarter.value = null
+  selectedRole.value = null
+  selectedBackup.value = null
   addModalVisible.value = false
 }
 </script>
