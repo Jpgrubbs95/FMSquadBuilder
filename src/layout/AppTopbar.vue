@@ -23,10 +23,6 @@ const logoUrl = computed(() => {
   return `layout/images/${layoutConfig.darkTheme.value ? 'logo-white' : 'logo-dark'}.svg`
 })
 
-const onDownloadClick = () => {
-  window.location.href = 'files/FMSquadBuilder-squad.fmf'
-}
-
 const onTopBarMenuButton = () => {
   topbarMenuActive.value = !topbarMenuActive.value
 }
@@ -98,10 +94,6 @@ const isOutsideClicked = (event) => {
     </button>
 
     <div class="layout-topbar-menu" :class="topbarMenuClasses">
-      <button @click="onDownloadClick" class="p-link layout-topbar-button">
-        <i class="pi pi-cog"></i>
-        <span>Download View</span>
-      </button>
       <a
         href="https://github.com/Jpgrubbs95/FMSquadBuilder"
         target="_blank"

@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AppLayout from '../layout/AppLayout.vue'
 import RoleGradeView from '../views/RoleGradeView.vue'
 import SquadAnalysis from '../views/SquadAnalysis.vue'
+import PlayerAnalysis from '../views/PlayerAnalysis.vue'
 import SquadFinances from '../views/SquadFinancesView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +22,11 @@ const router = createRouter({
           path: '/roleGrades',
           name: 'roleGrades',
           component: RoleGradeView
+        },
+        {
+          path: '/playerAnalysis',
+          name: 'playerAnalysis',
+          component: PlayerAnalysis
         },
         {
           path: '/squadAnalysis',

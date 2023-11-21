@@ -9,6 +9,7 @@ const model = ref([
     items: [
       { label: 'Load Squad', icon: 'pi pi-fw pi-users', to: '/' },
       { label: 'Squad Designer', icon: 'pi pi-fw pi-calculator', to: '/roleGrades' },
+      { label: 'Player Analysis', icon: 'pi pi-fw pi-user', to: '/playerAnalysis' },
       { label: 'Squad Analysis', icon: 'pi pi-fw pi-chart-line', to: '/squadAnalysis' },
       { label: 'Squad Finances', icon: 'pi pi-fw pi-money-bill', to: '/squadFinances' }
     ]

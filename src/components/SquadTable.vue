@@ -3,15 +3,22 @@
     <template #title>
       <div class="flex flex-wrap align-items-center justify-content-between gap-2">
         <span class="text-xl text-900 font-bold">Squad</span>
-        <FileUpload
-          mode="basic"
-          name="demo[]"
-          :maxFileSize="1000000"
-          customUpload
-          @uploader="onUpload"
-          :auto="true"
-          chooseLabel="Upload Squad"
-        />
+        <div class="flex justify-content-center flex-wrap gap-3">
+          <Button
+            label="Download FM View"
+            icon="pi pi-download"
+            @click="onDownloadViewClick"
+          ></Button>
+          <FileUpload
+            mode="basic"
+            name="demo[]"
+            :maxFileSize="1000000"
+            customUpload
+            @uploader="onUpload"
+            :auto="true"
+            chooseLabel="Upload Squad"
+          />
+        </div>
       </div>
     </template>
     <template #content>
@@ -163,6 +170,10 @@ function parseTable(table) {
     }
   }
   squadStore.squad = items
+}
+
+const onDownloadViewClick = () => {
+  window.location.href = 'files/FMSquadBuilder-squad.fmf'
 }
 </script>
 

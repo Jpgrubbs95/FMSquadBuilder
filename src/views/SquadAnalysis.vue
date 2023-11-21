@@ -30,7 +30,7 @@
           </Card>
         </div>
         <div class="col-6">
-          <Card>
+          <Card class="h-full">
             <template #title>
               Largest Drop-off
               <Chip

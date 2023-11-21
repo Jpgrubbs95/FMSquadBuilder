@@ -1,0 +1,5 @@
+squad_rawdata[a-z['_]*key'\]
+
+squad_rawdata[a-z['_]*green'\]
+
+squad_rawdata[a-z['_]*blue'\]
