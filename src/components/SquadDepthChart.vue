@@ -17,45 +17,49 @@
         :class="`p-datatable-sm ${props.tableClass}`"
         scrollable
         scrollHeight="flex"
+        @rowReorder="onRowReorder"
+        editMode="cell" 
+        @cell-edit-complete="onCellEditComplete"
       >
-        <Column v-if="props.showActions" field="order">
-          <template #body="slotProps">
-            <span class="p-buttonset">
-              <Button
-                v-if="slotProps.data.order !== 0"
-                icon="pi pi-chevron-up"
-                size="small"
-                text
-                @click="decrementOrder(slotProps.data)"
-              />
-              <Button
-                v-if="slotProps.data.order !== squadStore.startersAndBackups.length - 1"
-                icon="pi pi-chevron-down"
-                size="small"
-                text
-                @click="incrementOrder(slotProps.data)"
-              />
-            </span>
+        <Column rowReorder headerStyle="width: 3rem" :reorderableColumn="false">
+        </Column>
+        <Column field="role" header="Role">
+          <template #body="{data, field}">
+            <Dropdown
+                  v-model="data[field]"
+                  :options="roles"
+                  optionLabel="name"
+                  placeholder="Select a Role"
+                  class="w-full"
+                  filter
+                  @change="onRoleSelected(data, $event)"
+                />
           </template>
         </Column>
-        <Column field="role" header="Role"></Column>
-        <Column field="starter" header="Starter"></Column>
+        <Column field="starter" header="Starter"><template #body="{data}">
+          
+          <Dropdown
+          v-model="data.starter"
+          :options="squadStore.squad"
+          optionLabel="Name"
+          placeholder="Select a Starter"
+          class="w-full"
+          filter
+          @change="onStarterSelected(data, $event)"
+        /></template></Column>
         <Column field="starterRating" header="Rtg"></Column>
-        <Column field="backup" header="Backup"></Column>
-        <Column field="backupRating" header="Rtg"></Column>
-        <Column v-if="props.showActions" field="actions">
-          <template #body="slotProps">
-            <span class="p-buttonset">
-              <Button icon="pi pi-pencil" size="small" text @click="edit(slotProps.data)" />
-              <Button
-                icon="pi pi-trash"
-                size="small"
-                text
-                @click="deletePosition(slotProps.data)"
-              />
-            </span>
-          </template>
+        <Column field="backup" header="Backup"><template #body="{data}">
+          <Dropdown
+          v-model="data.backup"
+          :options="squadStore.squad"
+          optionLabel="Name"
+          placeholder="Select a Backup"
+          class="w-full"
+          filter
+          @change="onBackupSelected(data, $event)"
+        /></template>
         </Column>
+        <Column field="backupRating" header="Rtg"></Column>
       </DataTable>
     </template>
   </Card>
@@ -135,29 +139,46 @@ function sortStartersAndBackups() {
   })
 }
 
-function incrementOrder(position) {
-  const otherPosition = squadStore.startersAndBackups.find((val) => {
-    return val.order === position.order + 1
-  })
-  position.order++
-  otherPosition.order--
+const onRowReorder = (event) => {
+  squadStore.startersAndBackups = event.value
 
-  sortStartersAndBackups()
 }
 
-function decrementOrder(position) {
-  const otherPosition = squadStore.startersAndBackups.find((val) => {
-    return val.order === position.order - 1
-  })
+const onCellEditComplete = (event) => {
+    let { data, newValue, field } = event;
 
-  position.order--
-  otherPosition.order++
+    switch (field) {
+      default:
+        data[field] = newValue;
+    }
+  }
 
-  sortStartersAndBackups()
+const onRoleSelected = (position) =>{
+  
+  if(position.starter){
+    onStarterSelected(position, {value:position.starter})
+  }
+  if(position.backup){
+    onBackupSelected(position, {value:position.backup})
+  }
 }
 
-function deletePosition(position) {
-  squadStore.startersAndBackups = squadStore.startersAndBackups.filter((val) => val !== position)
+const onStarterSelected = (position, player) => {
+  if(position.role){
+    if (!player.value[position.role.value]) {
+      calculatePlayerAbilityForRole(player.value, position.role.value)
+    }
+    position.starterRating = player.value[position.role.value]
+  }
+}
+
+const onBackupSelected = (position, player) => {
+  if(position.role){
+    if (!player.value[position.role.value]) {
+      calculatePlayerAbilityForRole(player.value, position.role.value)
+    }
+    position.backupRating = player.value[position.role.value]
+  }
 }
 
 //Add Modal
@@ -179,7 +200,7 @@ function addNewPosition() {
   }
   squadStore.startersAndBackups.push({
     order: squadStore.startersAndBackups.length,
-    role: selectedRole.value.name,
+    role: selectedRole.value,
     starter: selectedStarter.value.Name,
     starterDollars: selectedStarter.value.dollars,
     starterRating: selectedStarter.value[selectedRole.value.value],

@@ -40,10 +40,10 @@
             </template>
             <template #content>
               <DataTable :value="squadStore.largestDropOff.position" :class="`p-datatable-sm`">
-                <Column field="role" header="Role"></Column>
-                <Column field="starter" header="Starter"></Column>
+                <Column field="role.name" header="Role"></Column>
+                <Column field="starter.Name" header="Starter"></Column>
                 <Column field="starterRating" header="Rtg"></Column>
-                <Column field="backup" header="Backup"></Column>
+                <Column field="backup.Name" header="Backup"></Column>
                 <Column field="backupRating" header="Rtg"></Column>
               </DataTable>
             </template>

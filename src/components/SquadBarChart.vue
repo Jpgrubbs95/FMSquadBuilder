@@ -30,17 +30,19 @@ const setChartData = () => {
   const backupData = []
 
   for (let position of squadStore.startersAndBackups) {
-    labels.push(position.role)
-    starterData.push({
-      role: position.role,
-      playerName: position.starter,
-      value: position.starterRating
-    })
-    backupData.push({
-      role: position.role,
-      playerName: position.backup,
-      value: position.backupRating
-    })
+    if(position.role && position.starter && position.backup){
+      labels.push(position.role.name)
+      starterData.push({
+        role: position.role?.name,
+        playerName: position.starter?.Name,
+        value: position.starterRating
+      })
+      backupData.push({
+        role: position.role?.name,
+        playerName: position.backup?.Name,
+        value: position.backupRating
+      })
+    }
   }
 
   return {

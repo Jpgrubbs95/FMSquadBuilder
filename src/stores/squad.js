@@ -56,13 +56,13 @@ export const useSquadStore = defineStore('squad', () => {
       let dollarsPerRoleGrade = position.starterDollars / parseFloat(position.starterRating)
       if (starterValue < 0 || dollarsPerRoleGrade < starterValue) {
         starterValue = dollarsPerRoleGrade
-        starterValuePlayer = position.starter
+        starterValuePlayer = position.starter.Name
       }
 
       dollarsPerRoleGrade = position.backupDollars / parseFloat(position.backupRating)
       if (backupValue < 0 || dollarsPerRoleGrade < backupValue) {
         backupValue = dollarsPerRoleGrade
-        backupValuePlayer = position.backup
+        backupValuePlayer = position.backup.Name
       }
     }
     const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })

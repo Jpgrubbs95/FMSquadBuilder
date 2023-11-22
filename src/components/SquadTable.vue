@@ -170,6 +170,19 @@ function parseTable(table) {
     }
   }
   squadStore.squad = items
+
+  for(let i=0; i < 11; i++){
+    squadStore.startersAndBackups.push({
+      order: i,
+      role: null,
+      starter: null,
+      starterDollars: null,
+      starterRating: null,
+      backup: null,
+      backupDollars: null,
+      backupRating: null
+    })
+  }
 }
 
 const onDownloadViewClick = () => {
