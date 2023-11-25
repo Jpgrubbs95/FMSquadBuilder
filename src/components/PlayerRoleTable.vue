@@ -11,6 +11,7 @@
           placeholder="Select Player"
           class="w-auto"
           filter
+          @change="$emit('player-selected', $event)"
         />
       </div>
     </template>
@@ -34,6 +35,8 @@
 import { computed, ref } from 'vue'
 import { useSquadStore } from '../stores/squad'
 import { allRoles, calculatePlayerAbilityForRole } from '../utils/positionGradeCalculator'
+
+defineEmits(['player-selected'])
 
 const squadStore = useSquadStore()
 

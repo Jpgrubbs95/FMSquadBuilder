@@ -21,11 +21,11 @@
         editMode="cell" 
         @cell-edit-complete="onCellEditComplete"
       >
-        <Column rowReorder headerStyle="width: 3rem" :reorderableColumn="false">
+        <Column v-if="props.editable" rowReorder headerStyle="width: 3rem" :reorderableColumn="false">
         </Column>
         <Column field="role" header="Role">
           <template #body="{data, field}">
-            <Dropdown
+            <Dropdown v-if="props.editable"
                   v-model="data[field]"
                   :options="roles"
                   optionLabel="name"
@@ -34,11 +34,12 @@
                   filter
                   @change="onRoleSelected(data, $event)"
                 />
+                <span v-else>{{ data[field]?.name }}</span>
           </template>
         </Column>
         <Column field="starter" header="Starter"><template #body="{data}">
           
-          <Dropdown
+          <Dropdown v-if="props.editable"
           v-model="data.starter"
           :options="squadStore.squad"
           optionLabel="Name"
@@ -46,10 +47,11 @@
           class="w-full"
           filter
           @change="onStarterSelected(data, $event)"
-        /></template></Column>
+        />                 <span v-else>{{ data.starter.Name  }}</span>
+</template></Column>
         <Column field="starterRating" header="Rtg"></Column>
         <Column field="backup" header="Backup"><template #body="{data}">
-          <Dropdown
+          <Dropdown v-if="props.editable"
           v-model="data.backup"
           :options="squadStore.squad"
           optionLabel="Name"
@@ -57,7 +59,8 @@
           class="w-full"
           filter
           @change="onBackupSelected(data, $event)"
-        /></template>
+        />                 <span v-else>{{ data.backup.Name  }}</span>
+</template>
         </Column>
         <Column field="backupRating" header="Rtg"></Column>
       </DataTable>
@@ -116,7 +119,7 @@ import { calculatePlayerAbilityForRole, allRoles } from '../utils/positionGradeC
 import { ref, defineProps } from 'vue'
 
 const props = defineProps({
-  showActions: {
+  editable: {
     type: Boolean,
     default: false
   },
@@ -202,10 +205,8 @@ function addNewPosition() {
     order: squadStore.startersAndBackups.length,
     role: selectedRole.value,
     starter: selectedStarter.value.Name,
-    starterDollars: selectedStarter.value.dollars,
     starterRating: selectedStarter.value[selectedRole.value.value],
     backup: selectedBackup.value.Name,
-    backupDollars: selectedStarter.value.dollars,
     backupRating: selectedBackup.value[selectedRole.value.value]
   })
   sortStartersAndBackups()

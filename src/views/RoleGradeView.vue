@@ -47,7 +47,7 @@
 
     <div class="col">
       <SquadDepthChart
-        show-actions
+        editable
         class="fullscreen-card"
         table-class="fullscreen-card-content"
       ></SquadDepthChart>

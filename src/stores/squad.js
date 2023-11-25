@@ -53,13 +53,13 @@ export const useSquadStore = defineStore('squad', () => {
     let backupValuePlayer = ''
 
     for (let position of startersAndBackups.value) {
-      let dollarsPerRoleGrade = position.starterDollars / parseFloat(position.starterRating)
+      let dollarsPerRoleGrade = position.starter.dollars / parseFloat(position.starterRating)
       if (starterValue < 0 || dollarsPerRoleGrade < starterValue) {
         starterValue = dollarsPerRoleGrade
         starterValuePlayer = position.starter.Name
       }
 
-      dollarsPerRoleGrade = position.backupDollars / parseFloat(position.backupRating)
+      dollarsPerRoleGrade = position.backup.dollars / parseFloat(position.backupRating)
       if (backupValue < 0 || dollarsPerRoleGrade < backupValue) {
         backupValue = dollarsPerRoleGrade
         backupValuePlayer = position.backup.Name
