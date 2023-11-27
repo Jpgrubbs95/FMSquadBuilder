@@ -171,7 +171,7 @@ function parseTable(table) {
   }
   squadStore.squad = items
 
-  for(let i=0; i < 11; i++){
+  for (let i = 0; i < 11; i++) {
     squadStore.startersAndBackups.push({
       order: i,
       role: null,

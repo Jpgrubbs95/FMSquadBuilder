@@ -39,7 +39,7 @@
 import PlayerRoleTable from '../components/PlayerRoleTable.vue'
 import { ref } from 'vue'
 
-const columns = ref([]);
+const columns = ref([])
 
 const selectedPlayer = ref()
 
@@ -48,13 +48,12 @@ const onPlayerSelected = (player) => {
 }
 
 columns.value = [
-    { field: 'Name', header: 'Name' },
-    { field: 'Age', header: 'Age' },
-    { field: 'Position', header: 'Position' },
-    { field: 'Left Foot', header: 'Left Foot' },
-    { field: 'Right Foot', header: 'Right Foot' },
-    { field: 'Height', header: 'Height' },
-    { field: 'Agreed Playing Time', header: 'Agreed Playing Time'}
-  ]
-
+  { field: 'Name', header: 'Name' },
+  { field: 'Age', header: 'Age' },
+  { field: 'Position', header: 'Position' },
+  { field: 'Left Foot', header: 'Left Foot' },
+  { field: 'Right Foot', header: 'Right Foot' },
+  { field: 'Height', header: 'Height' },
+  { field: 'Agreed Playing Time', header: 'Agreed Playing Time' }
+]
 </script>

@@ -1,4 +1,4 @@
-squad_rawdata[a-z['_]*key'\]
+squad_rawdata[a-z['_]*key ='\]
 
 squad_rawdata[a-z['_]*green'\]
 

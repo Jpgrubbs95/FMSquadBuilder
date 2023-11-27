@@ -20,10 +20,10 @@ export const allRoles = [
   { name: 'Inverted Wing Back - Attack', value: 'iwba' },
   { name: 'Libero - Defend', value: 'ld' },
   { name: 'Libero - Support', value: 'ls' },
-  { name: 'No-Nonsense Center Back - Defend', value: 'ncbd'},
-  { name: 'No-Nonsense Center Back - Cover', value: 'ncbc'},
-  { name: 'No-Nonsense Center Back - Stopper', value: 'ncbs'},
-  { name: 'No-Nonsense Full Back - Defend', value: 'nfbd'},
+  { name: 'No-Nonsense Center Back - Defend', value: 'ncbd' },
+  { name: 'No-Nonsense Center Back - Cover', value: 'ncbc' },
+  { name: 'No-Nonsense Center Back - Stopper', value: 'ncbs' },
+  { name: 'No-Nonsense Full Back - Defend', value: 'nfbd' },
   { name: 'Wide Center Back - Defend', value: 'wcbd' },
   { name: 'Wide Center Back - Support', value: 'wcbs' },
   { name: 'Wide Center Back - Attack', value: 'wcba' },
@@ -255,7 +255,7 @@ export function calculatePlayerAbilityForRole(player, role) {
       return
     case 'mezs':
       mezzalaSupport(player)
-      return 
+      return
     case 'meza':
       mezzalaAttack(player)
       return
@@ -315,7 +315,7 @@ export function calculatePlayerAbilityForRole(player, role) {
       return
     case 'dlfs':
       deepLyingForwardSupport(player)
-      return 
+      return
     case 'dlfa':
       deepLyingForwardAttack(player)
       return
@@ -720,7 +720,6 @@ function invertedFullBackDefend(player) {
   return player.ifbd
 }
 
-
 function invertedWingbackDefend(player) {
   const key =
     parseInt(player['Acc']) +
@@ -856,43 +855,109 @@ function liberoSupport(player) {
   return player.ls
 }
 
-function noNonsenseCenterBackStopper(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Jum']) + parseInt(player['Cmp']) )
-  const green = ( parseInt(player['Hea']) + parseInt(player['Tck']) + parseInt(player['Agg']) + parseInt(player['Bra']) + parseInt(player['Pos']) + parseInt(player['Str']) )
-  const blue = ( parseInt(player['Mar']) + parseInt(player['Ant']) + parseInt(player['Cnt']) )
-  player.ncbs =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 41).toFixed(1)
+function noNonsenseCenterBackStopper(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Jum']) +
+    parseInt(player['Cmp'])
+  const green =
+    parseInt(player['Hea']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Agg']) +
+    parseInt(player['Bra']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Str'])
+  const blue = parseInt(player['Mar']) + parseInt(player['Ant']) + parseInt(player['Cnt'])
+  player.ncbs = ((key * 5 + green * 3 + blue * 1) / 41).toFixed(1)
   return player.ncbs
 }
-    
-function noNonsenseCenterBackCover(player){
-const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Jum']) + parseInt(player['Cmp']) )
-const green = ( parseInt(player['Mar']) + parseInt(player['Tck']) + parseInt(player['Ant']) + parseInt(player['Cnt']) + parseInt(player['Pos']) )
-const blue = ( parseInt(player['Hea']) + parseInt(player['Bra']) + parseInt(player['Str']) )
-player.ncbc =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 38).toFixed(1)
-return player.ncbc
-}
-    
-function noNonsenseCenterBackDefend(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Jum']) + parseInt(player['Cmp']) )
-  const green = ( parseInt(player['Hea']) + parseInt(player['Mar']) + parseInt(player['Tck']) + parseInt(player['Pos']) + parseInt(player['Str']) )
-  const blue = ( parseInt(player['Agg']) + parseInt(player['Ant']) + parseInt(player['Bra']) + parseInt(player['Cnt']) )
-  player.ncbd =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 39).toFixed(1)
-  return player.ncbd
-}    
 
-function noNonsenseFullBackDefend(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Mar']) + parseInt(player['Tck']) + parseInt(player['Ant']) + parseInt(player['Pos']) + parseInt(player['Str']) )
-  const blue = ( parseInt(player['Hea']) + parseInt(player['Agg']) + parseInt(player['Bra']) + parseInt(player['Cnt']) + parseInt(player['Tea']) )
-  player.nfbd =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 40).toFixed(1)
+function noNonsenseCenterBackCover(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Jum']) +
+    parseInt(player['Cmp'])
+  const green =
+    parseInt(player['Mar']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Pos'])
+  const blue = parseInt(player['Hea']) + parseInt(player['Bra']) + parseInt(player['Str'])
+  player.ncbc = ((key * 5 + green * 3 + blue * 1) / 38).toFixed(1)
+  return player.ncbc
+}
+
+function noNonsenseCenterBackDefend(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Jum']) +
+    parseInt(player['Cmp'])
+  const green =
+    parseInt(player['Hea']) +
+    parseInt(player['Mar']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Str'])
+  const blue =
+    parseInt(player['Agg']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Bra']) +
+    parseInt(player['Cnt'])
+  player.ncbd = ((key * 5 + green * 3 + blue * 1) / 39).toFixed(1)
+  return player.ncbd
+}
+
+function noNonsenseFullBackDefend(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Mar']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Str'])
+  const blue =
+    parseInt(player['Hea']) +
+    parseInt(player['Agg']) +
+    parseInt(player['Bra']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Tea'])
+  player.nfbd = ((key * 5 + green * 3 + blue * 1) / 40).toFixed(1)
   return player.nfbd
 }
 
 function wideCenterBackDefend(player) {
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Jum']) + parseInt(player['Cmp']) )
-  const green = ( parseInt(player['Hea']) + parseInt(player['Mar']) + parseInt(player['Tck']) + parseInt(player['Pos']) + parseInt(player['Str']) )
-  const blue = ( parseInt(player['Dri']) + parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Agg']) + parseInt(player['Ant']) + parseInt(player['Bra']) + parseInt(player['Cnt']) + parseInt(player['Dec']) + parseInt(player['Wor']) + parseInt(player['Agi']) )
-  player.wcbd =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 46).toFixed(1)
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Jum']) +
+    parseInt(player['Cmp'])
+  const green =
+    parseInt(player['Hea']) +
+    parseInt(player['Mar']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Str'])
+  const blue =
+    parseInt(player['Dri']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Agg']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Bra']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Wor']) +
+    parseInt(player['Agi'])
+  player.wcbd = ((key * 5 + green * 3 + blue * 1) / 46).toFixed(1)
   return player.wcbd
 }
 
@@ -928,20 +993,61 @@ function wideCenterBackSupport(player) {
 }
 
 function wideCenterBackAttack(player) {
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Jum']) + parseInt(player['Cmp']) )
-  const green = ( parseInt(player['Cro']) + parseInt(player['Dri']) + parseInt(player['Hea']) + parseInt(player['Mar']) + parseInt(player['Tck']) + parseInt(player['OtB']) + parseInt(player['Sta']) + parseInt(player['Str']) )
-  const blue = ( parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Agg']) + parseInt(player['Ant']) + parseInt(player['Bra']) + parseInt(player['Cnt']) + parseInt(player['Dec']) + parseInt(player['Pos']) + parseInt(player['Wor']) + parseInt(player['Agi']) )
-  player.wcba =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 55).toFixed(1)
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Jum']) +
+    parseInt(player['Cmp'])
+  const green =
+    parseInt(player['Cro']) +
+    parseInt(player['Dri']) +
+    parseInt(player['Hea']) +
+    parseInt(player['Mar']) +
+    parseInt(player['Tck']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Str'])
+  const blue =
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Agg']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Bra']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Wor']) +
+    parseInt(player['Agi'])
+  player.wcba = ((key * 5 + green * 3 + blue * 1) / 55).toFixed(1)
   return player.wcba
 }
 
-function wingBackDefend(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Mar']) + parseInt(player['Tck']) + parseInt(player['Ant']) + parseInt(player['Pos']) + parseInt(player['Tea']) )
-  const blue = ( parseInt(player['Cro']) + parseInt(player['Dri']) + parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Cnt']) + parseInt(player['Dec']) + parseInt(player['OtB']) + parseInt(player['Agi']) + parseInt(player['Bal']) )
-  player.wbd =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 45).toFixed(1)
+function wingBackDefend(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Mar']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Tea'])
+  const blue =
+    parseInt(player['Cro']) +
+    parseInt(player['Dri']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Dec']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Agi']) +
+    parseInt(player['Bal'])
+  player.wbd = ((key * 5 + green * 3 + blue * 1) / 45).toFixed(1)
   return player.wbd
-    
 }
 
 function wingBackSupport(player) {
@@ -972,10 +1078,30 @@ function wingBackSupport(player) {
 }
 
 function wingBackAttack(player) {
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Cro']) + parseInt(player['Dri']) + parseInt(player['Tck']) + parseInt(player['Tec']) + parseInt(player['OtB']) + parseInt(player['Tea']) )
-  const blue = ( parseInt(player['Fir']) + parseInt(player['Mar']) + parseInt(player['Pas']) + parseInt(player['Ant']) + parseInt(player['Cnt']) + parseInt(player['Dec']) + parseInt(player['Fla']) + parseInt(player['Pos']) + parseInt(player['Agi']) + parseInt(player['Bal']) )
-  player.wba =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 48).toFixed(1)
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Cro']) +
+    parseInt(player['Dri']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Tec']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Tea'])
+  const blue =
+    parseInt(player['Fir']) +
+    parseInt(player['Mar']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Fla']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Agi']) +
+    parseInt(player['Bal'])
+  player.wba = ((key * 5 + green * 3 + blue * 1) / 48).toFixed(1)
   return player.wba
 }
 
@@ -1004,50 +1130,137 @@ function advancedPlaymakerSupport(player) {
 }
 
 function advancedPlaymakerAttack(player) {
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Cmp']) + parseInt(player['Dec']) + parseInt(player['OtB']) + parseInt(player['Tea']) + parseInt(player['Vis']) )
-  const blue = ( parseInt(player['Dri']) + parseInt(player['Ant']) + parseInt(player['Fla']) + parseInt(player['Agi']) )
-  player.apa =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 48).toFixed(1)
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Dec']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Tea']) +
+    parseInt(player['Vis'])
+  const blue =
+    parseInt(player['Dri']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Fla']) +
+    parseInt(player['Agi'])
+  player.apa = ((key * 5 + green * 3 + blue * 1) / 48).toFixed(1)
   return player.apa
 }
 
-function anchorDefend(player){
-  const key = ( parseInt(player['Wor']) + parseInt(player['Sta']) + parseInt(player['Acc']) + parseInt(player['Pac']) )
-  const green = ( parseInt(player['Mar']) + parseInt(player['Tck']) + parseInt(player['Ant']) + parseInt(player['Cnt']) + parseInt(player['Dec']) + parseInt(player['Pos']) )
-  const blue = ( parseInt(player['Cmp']) + parseInt(player['Tea']) + parseInt(player['Str']) )
-  player.ad =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 41).toFixed(1)
+function anchorDefend(player) {
+  const key =
+    parseInt(player['Wor']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Acc']) +
+    parseInt(player['Pac'])
+  const green =
+    parseInt(player['Mar']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Pos'])
+  const blue = parseInt(player['Cmp']) + parseInt(player['Tea']) + parseInt(player['Str'])
+  player.ad = ((key * 5 + green * 3 + blue * 1) / 41).toFixed(1)
   return player.ad
 }
 
-function attackingMidfielderSupport(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Fir']) + parseInt(player['Lon']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Ant']) + parseInt(player['Dec']) + parseInt(player['Fla']) + parseInt(player['OtB']) )
-  const blue = ( parseInt(player['Dri']) + parseInt(player['Cmp']) + parseInt(player['Vis']) + parseInt(player['Agi']) )
-  player.ams =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 48).toFixed(1)
+function attackingMidfielderSupport(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Fir']) +
+    parseInt(player['Lon']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Fla']) +
+    parseInt(player['OtB'])
+  const blue =
+    parseInt(player['Dri']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Vis']) +
+    parseInt(player['Agi'])
+  player.ams = ((key * 5 + green * 3 + blue * 1) / 48).toFixed(1)
   return player.ams
 }
 
-function attackingMidfielderAttack(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Dri']) + parseInt(player['Fir']) + parseInt(player['Lon']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Ant']) + parseInt(player['Dec']) + parseInt(player['Fla']) + parseInt(player['OtB']) )
-  const blue = ( parseInt(player['Fin']) + parseInt(player['Cmp']) + parseInt(player['Vis']) + parseInt(player['Agi']) )
-  player.ama =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 51).toFixed(1)
+function attackingMidfielderAttack(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Dri']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Lon']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Fla']) +
+    parseInt(player['OtB'])
+  const blue =
+    parseInt(player['Fin']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Vis']) +
+    parseInt(player['Agi'])
+  player.ama = ((key * 5 + green * 3 + blue * 1) / 51).toFixed(1)
   return player.ama
 }
 
-function ballWinningMidfielderDefend(player){
-  const key = ( parseInt(player['Wor']) + parseInt(player['Sta']) + parseInt(player['Acc']) + parseInt(player['Pac']) )
-  const green = ( parseInt(player['Tck']) + parseInt(player['Agg']) + parseInt(player['Ant']) + parseInt(player['Tea']) )
-  const blue = ( parseInt(player['Mar']) + parseInt(player['Bra']) + parseInt(player['Cnt']) + parseInt(player['Pos']) + parseInt(player['Agi']) + parseInt(player['Str']) )
-  player.bwmd =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 38).toFixed(1)
+function ballWinningMidfielderDefend(player) {
+  const key =
+    parseInt(player['Wor']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Acc']) +
+    parseInt(player['Pac'])
+  const green =
+    parseInt(player['Tck']) +
+    parseInt(player['Agg']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Tea'])
+  const blue =
+    parseInt(player['Mar']) +
+    parseInt(player['Bra']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Agi']) +
+    parseInt(player['Str'])
+  player.bwmd = ((key * 5 + green * 3 + blue * 1) / 38).toFixed(1)
   return player.bwmd
 }
 
-function ballWinningMidfielderSupport(player){
-  const key = ( parseInt(player['Wor']) + parseInt(player['Sta']) + parseInt(player['Acc']) + parseInt(player['Pac']) )
-  const green = ( parseInt(player['Tck']) + parseInt(player['Agg']) + parseInt(player['Ant']) + parseInt(player['Tea']) )
-  const blue = ( parseInt(player['Mar']) + parseInt(player['Pas']) + parseInt(player['Bra']) + parseInt(player['Cnt']) + parseInt(player['Agi']) + parseInt(player['Str']) )
-  player.bwms =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 38).toFixed(1)
+function ballWinningMidfielderSupport(player) {
+  const key =
+    parseInt(player['Wor']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Acc']) +
+    parseInt(player['Pac'])
+  const green =
+    parseInt(player['Tck']) +
+    parseInt(player['Agg']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Tea'])
+  const blue =
+    parseInt(player['Mar']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Bra']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Agi']) +
+    parseInt(player['Str'])
+  player.bwms = ((key * 5 + green * 3 + blue * 1) / 38).toFixed(1)
   return player.bwms
 }
 
@@ -1079,51 +1292,143 @@ function boxToBoxSupport(player) {
   return player.bbms
 }
 
-function carrileroSupport(player){
-  const key = ( parseInt(player['Wor']) + parseInt(player['Sta']) + parseInt(player['Acc']) + parseInt(player['Pac']) )
-  const green = ( parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tck']) + parseInt(player['Dec']) + parseInt(player['Pos']) + parseInt(player['Tea']) )
-  const blue = ( parseInt(player['Tec']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['Cnt']) + parseInt(player['OtB']) + parseInt(player['Vis']) )
-  player.cars =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 44).toFixed(1)
+function carrileroSupport(player) {
+  const key =
+    parseInt(player['Wor']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Acc']) +
+    parseInt(player['Pac'])
+  const green =
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Tea'])
+  const blue =
+    parseInt(player['Tec']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Vis'])
+  player.cars = ((key * 5 + green * 3 + blue * 1) / 44).toFixed(1)
   return player.cars
 }
 
-function centralMidfielderDefend(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Tck']) + parseInt(player['Cnt']) + parseInt(player['Dec']) + parseInt(player['Pos']) + parseInt(player['Tea']) )
-  const blue = ( parseInt(player['Fir']) + parseInt(player['Mar']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Agg']) + parseInt(player['Ant']) + parseInt(player['Cmp']) )
-  player.cmd =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 42).toFixed(1)
+function centralMidfielderDefend(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Tck']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Tea'])
+  const blue =
+    parseInt(player['Fir']) +
+    parseInt(player['Mar']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Agg']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp'])
+  player.cmd = ((key * 5 + green * 3 + blue * 1) / 42).toFixed(1)
   return player.cmd
 }
 
-function centralMidfielderSupport(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tck']) + parseInt(player['Dec']) + parseInt(player['Tea']) )
-  const blue = ( parseInt(player['Tec']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['Cnt']) + parseInt(player['OtB']) + parseInt(player['Vis']) )
-  player.cms =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 41).toFixed(1)
+function centralMidfielderSupport(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Tea'])
+  const blue =
+    parseInt(player['Tec']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Vis'])
+  player.cms = ((key * 5 + green * 3 + blue * 1) / 41).toFixed(1)
   return player.cms
 }
 
-function centralMidfielderAttack(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Dec']) + parseInt(player['OtB']) )
-  const blue = ( parseInt(player['Lon']) + parseInt(player['Tck']) + parseInt(player['Tec']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['Tea']) + parseInt(player['Vis']) )
-  player.cma =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 39).toFixed(1)
+function centralMidfielderAttack(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Dec']) +
+    parseInt(player['OtB'])
+  const blue =
+    parseInt(player['Lon']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Tea']) +
+    parseInt(player['Vis'])
+  player.cma = ((key * 5 + green * 3 + blue * 1) / 39).toFixed(1)
   return player.cma
 }
 
-function deepLyingPlaymakerDefend(player){
-  const key = ( parseInt(player['Wor']) + parseInt(player['Sta']) + parseInt(player['Acc']) + parseInt(player['Pac']) )
-  const green = ( parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Cmp']) + parseInt(player['Dec']) + parseInt(player['Tea']) + parseInt(player['Vis']) )
-  const blue = ( parseInt(player['Tck']) + parseInt(player['Ant']) + parseInt(player['Pos']) + parseInt(player['Bal']) )
-  player.dlpd =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 45).toFixed(1)
+function deepLyingPlaymakerDefend(player) {
+  const key =
+    parseInt(player['Wor']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Acc']) +
+    parseInt(player['Pac'])
+  const green =
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Tea']) +
+    parseInt(player['Vis'])
+  const blue =
+    parseInt(player['Tck']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Bal'])
+  player.dlpd = ((key * 5 + green * 3 + blue * 1) / 45).toFixed(1)
   return player.dlpd
 }
 
-function deepLyingPlaymakerSupport(player){
-  const key = ( parseInt(player['Wor']) + parseInt(player['Sta']) + parseInt(player['Acc']) + parseInt(player['Pac']) )
-  const green = ( parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Cmp']) + parseInt(player['Dec']) + parseInt(player['Tea']) + parseInt(player['Vis']) )
-  const blue = ( parseInt(player['Ant']) + parseInt(player['OtB']) + parseInt(player['Pos']) + parseInt(player['Bal']) )
-  player.dlps =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 45).toFixed(1)
+function deepLyingPlaymakerSupport(player) {
+  const key =
+    parseInt(player['Wor']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Acc']) +
+    parseInt(player['Pac'])
+  const green =
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Tea']) +
+    parseInt(player['Vis'])
+  const blue =
+    parseInt(player['Ant']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Bal'])
+  player.dlps = ((key * 5 + green * 3 + blue * 1) / 45).toFixed(1)
   return player.dlps
 }
 
@@ -1174,99 +1479,298 @@ function defensiveMidfielderSupport(player) {
   return player.dms
 }
 
-function defensiveWingerDefend(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Tec']) + parseInt(player['Ant']) + parseInt(player['OtB']) + parseInt(player['Pos']) + parseInt(player['Tea']) )
-  const blue = ( parseInt(player['Cro']) + parseInt(player['Dri']) + parseInt(player['Fir']) + parseInt(player['Mar']) + parseInt(player['Tck']) + parseInt(player['Agg']) + parseInt(player['Cnt']) + parseInt(player['Dec']) )
-  player.dwd =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 43).toFixed(1)
+function defensiveWingerDefend(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Tec']) +
+    parseInt(player['Ant']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Tea'])
+  const blue =
+    parseInt(player['Cro']) +
+    parseInt(player['Dri']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Mar']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Agg']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Dec'])
+  player.dwd = ((key * 5 + green * 3 + blue * 1) / 43).toFixed(1)
   return player.dwd
 }
 
-function defensiveWingerSupport(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Cro']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['OtB']) + parseInt(player['Tea']) )
-  const blue = ( parseInt(player['Dri']) + parseInt(player['Fir']) + parseInt(player['Mar']) + parseInt(player['Pas']) + parseInt(player['Tck']) + parseInt(player['Agg']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['Cnt']) + parseInt(player['Dec']) + parseInt(player['Pos']) )
-  player.dws =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 46).toFixed(1)
+function defensiveWingerSupport(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Cro']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Tea'])
+  const blue =
+    parseInt(player['Dri']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Mar']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Agg']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Pos'])
+  player.dws = ((key * 5 + green * 3 + blue * 1) / 46).toFixed(1)
   return player.dws
 }
 
-function engancheSupport(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Cmp']) + parseInt(player['Dec']) + parseInt(player['Vis']) )
-  const blue = ( parseInt(player['Dri']) + parseInt(player['Ant']) + parseInt(player['Fla']) + parseInt(player['OtB']) + parseInt(player['Tea']) + parseInt(player['Agi']) )
-  player.engs =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 44).toFixed(1)
+function engancheSupport(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Vis'])
+  const blue =
+    parseInt(player['Dri']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Fla']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Tea']) +
+    parseInt(player['Agi'])
+  player.engs = ((key * 5 + green * 3 + blue * 1) / 44).toFixed(1)
   return player.engs
-  }
+}
 
-function halfBackDefend(player){
-  const key = ( parseInt(player['Wor']) + parseInt(player['Sta']) + parseInt(player['Acc']) + parseInt(player['Pac']) )
-  const green = ( parseInt(player['Mar']) + parseInt(player['Tck']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['Cnt']) + parseInt(player['Dec']) + parseInt(player['Pos']) + parseInt(player['Tea']) )
-  const blue = ( parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Agg']) + parseInt(player['Bra']) + parseInt(player['Jum']) + parseInt(player['Str']) )
-  player.hbd =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 50).toFixed(1)
+function halfBackDefend(player) {
+  const key =
+    parseInt(player['Wor']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Acc']) +
+    parseInt(player['Pac'])
+  const green =
+    parseInt(player['Mar']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Tea'])
+  const blue =
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Agg']) +
+    parseInt(player['Bra']) +
+    parseInt(player['Jum']) +
+    parseInt(player['Str'])
+  player.hbd = ((key * 5 + green * 3 + blue * 1) / 50).toFixed(1)
   return player.hbd
 }
 
-function insideForwardSupport(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Dri']) + parseInt(player['Fin']) + parseInt(player['Fir']) + parseInt(player['Tec']) + parseInt(player['OtB']) + parseInt(player['Agi']) )
-  const blue = ( parseInt(player['Lon']) + parseInt(player['Pas']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['Fla']) + parseInt(player['Vis']) + parseInt(player['Bal']) )
-  player.ifs =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 45).toFixed(1)
+function insideForwardSupport(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Dri']) +
+    parseInt(player['Fin']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Tec']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Agi'])
+  const blue =
+    parseInt(player['Lon']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Fla']) +
+    parseInt(player['Vis']) +
+    parseInt(player['Bal'])
+  player.ifs = ((key * 5 + green * 3 + blue * 1) / 45).toFixed(1)
   return player.ifs
 }
 
-function insideForwardAttack(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Dri']) + parseInt(player['Fin']) + parseInt(player['Fir']) + parseInt(player['Tec']) + parseInt(player['Ant']) + parseInt(player['OtB']) + parseInt(player['Agi']) )
-  const blue = ( parseInt(player['Lon']) + parseInt(player['Pas']) + parseInt(player['Cmp']) + parseInt(player['Fla']) + parseInt(player['Bal']) )
-  player.ifa =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 46).toFixed(1)
+function insideForwardAttack(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Dri']) +
+    parseInt(player['Fin']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Ant']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Agi'])
+  const blue =
+    parseInt(player['Lon']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Fla']) +
+    parseInt(player['Bal'])
+  player.ifa = ((key * 5 + green * 3 + blue * 1) / 46).toFixed(1)
   return player.ifa
 }
 
-function invertedWingerSupport(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Cro']) + parseInt(player['Dri']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Agi']) )
-  const blue = ( parseInt(player['Fir']) + parseInt(player['Lon']) + parseInt(player['Cmp']) + parseInt(player['Dec']) + parseInt(player['OtB']) + parseInt(player['Vis']) + parseInt(player['Bal']) )
-  player.iws =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 42).toFixed(1)
+function invertedWingerSupport(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Cro']) +
+    parseInt(player['Dri']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Agi'])
+  const blue =
+    parseInt(player['Fir']) +
+    parseInt(player['Lon']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Dec']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Vis']) +
+    parseInt(player['Bal'])
+  player.iws = ((key * 5 + green * 3 + blue * 1) / 42).toFixed(1)
   return player.iws
 }
 
-function invertedWingerAttack(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Cro']) + parseInt(player['Dri']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Agi']) )
-  const blue = ( parseInt(player['Fir']) + parseInt(player['Lon']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['Dec']) + parseInt(player['Fla']) + parseInt(player['OtB']) + parseInt(player['Vis']) + parseInt(player['Bal']) )
-  player.iwa =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 44).toFixed(1)
+function invertedWingerAttack(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Cro']) +
+    parseInt(player['Dri']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Agi'])
+  const blue =
+    parseInt(player['Fir']) +
+    parseInt(player['Lon']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Fla']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Vis']) +
+    parseInt(player['Bal'])
+  player.iwa = ((key * 5 + green * 3 + blue * 1) / 44).toFixed(1)
   return player.iwa
 }
 
-function mezzalaSupport(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Dec']) + parseInt(player['OtB']) )
-  const blue = ( parseInt(player['Dri']) + parseInt(player['Fir']) + parseInt(player['Lon']) + parseInt(player['Tck']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['Vis']) + parseInt(player['Bal']) )
-  player.mezs =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 40).toFixed(1)
+function mezzalaSupport(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Dec']) +
+    parseInt(player['OtB'])
+  const blue =
+    parseInt(player['Dri']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Lon']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Vis']) +
+    parseInt(player['Bal'])
+  player.mezs = ((key * 5 + green * 3 + blue * 1) / 40).toFixed(1)
   return player.mezs
 }
 
-function mezzalaAttack(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Dri']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Dec']) + parseInt(player['OtB']) + parseInt(player['Vis']) )
-  const blue = ( parseInt(player['Fin']) + parseInt(player['Fir']) + parseInt(player['Lon']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['Fla']) + parseInt(player['Bal']) )
-  player.meza =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 45).toFixed(1)
+function mezzalaAttack(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Dri']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Dec']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Vis'])
+  const blue =
+    parseInt(player['Fin']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Lon']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Fla']) +
+    parseInt(player['Bal'])
+  player.meza = ((key * 5 + green * 3 + blue * 1) / 45).toFixed(1)
   return player.meza
 }
 
-function raumdeuterAttack(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Fin']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['Cnt']) + parseInt(player['Dec']) + parseInt(player['OtB']) + parseInt(player['Bal']) )
-  const blue = ( parseInt(player['Fir']) + parseInt(player['Tec']) )
-  player.raua =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 43).toFixed(1)
+function raumdeuterAttack(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Fin']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Dec']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Bal'])
+  const blue = parseInt(player['Fir']) + parseInt(player['Tec'])
+  player.raua = ((key * 5 + green * 3 + blue * 1) / 43).toFixed(1)
   return player.raua
 }
 
-function registaSupport(player){
-  const key = ( parseInt(player['Wor']) + parseInt(player['Sta']) + parseInt(player['Acc']) + parseInt(player['Pac']) )
-  const green = ( parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Cmp']) + parseInt(player['Dec']) + parseInt(player['Fla']) + parseInt(player['OtB']) + parseInt(player['Tea']) + parseInt(player['Vis']) )
-  const blue = ( parseInt(player['Dri']) + parseInt(player['Lon']) + parseInt(player['Ant']) + parseInt(player['Bal']) )
-  player.regs =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 51).toFixed(1)
+function registaSupport(player) {
+  const key =
+    parseInt(player['Wor']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Acc']) +
+    parseInt(player['Pac'])
+  const green =
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Fla']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Tea']) +
+    parseInt(player['Vis'])
+  const blue =
+    parseInt(player['Dri']) +
+    parseInt(player['Lon']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Bal'])
+  player.regs = ((key * 5 + green * 3 + blue * 1) / 51).toFixed(1)
   return player.regs
 }
 
@@ -1297,83 +1801,235 @@ function roamingPlaymakerSupport(player) {
   return player.rps
 }
 
-function segundoVolanteSupport(player){
-  const key = ( parseInt(player['Wor']) + parseInt(player['Sta']) + parseInt(player['Acc']) + parseInt(player['Pac']) )
-  const green = ( parseInt(player['Mar']) + parseInt(player['Pas']) + parseInt(player['Tck']) + parseInt(player['OtB']) + parseInt(player['Pos']) )
-  const blue = ( parseInt(player['Fin']) + parseInt(player['Fir']) + parseInt(player['Lon']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['Cnt']) + parseInt(player['Dec']) + parseInt(player['Bal']) + parseInt(player['Str']) )
-  player.svs =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 44).toFixed(1)
+function segundoVolanteSupport(player) {
+  const key =
+    parseInt(player['Wor']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Acc']) +
+    parseInt(player['Pac'])
+  const green =
+    parseInt(player['Mar']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tck']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Pos'])
+  const blue =
+    parseInt(player['Fin']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Lon']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Bal']) +
+    parseInt(player['Str'])
+  player.svs = ((key * 5 + green * 3 + blue * 1) / 44).toFixed(1)
   return player.svs
 }
 
-function segundoVolanteAttack(player){
-  const key = ( parseInt(player['Wor']) + parseInt(player['Sta']) + parseInt(player['Acc']) + parseInt(player['Pac']) )
-  const green = ( parseInt(player['Fin']) + parseInt(player['Lon']) + parseInt(player['Pas']) + parseInt(player['Tck']) + parseInt(player['Ant']) + parseInt(player['OtB']) + parseInt(player['Pos']) )
-  const blue = ( parseInt(player['Fir']) + parseInt(player['Mar']) + parseInt(player['Cmp']) + parseInt(player['Cnt']) + parseInt(player['Dec']) + parseInt(player['Bal']) )
-  player.sva =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 47).toFixed(1)
+function segundoVolanteAttack(player) {
+  const key =
+    parseInt(player['Wor']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Acc']) +
+    parseInt(player['Pac'])
+  const green =
+    parseInt(player['Fin']) +
+    parseInt(player['Lon']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Ant']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Pos'])
+  const blue =
+    parseInt(player['Fir']) +
+    parseInt(player['Mar']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Bal'])
+  player.sva = ((key * 5 + green * 3 + blue * 1) / 47).toFixed(1)
   return player.sva
 }
 
-function shadowStrikerAttack(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Dri']) + parseInt(player['Fin']) + parseInt(player['Fir']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['OtB']) )
-  const blue = ( parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Cnt']) + parseInt(player['Dec']) + parseInt(player['Agi']) + parseInt(player['Bal']) )
-  player.ssa =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 44).toFixed(1)
+function shadowStrikerAttack(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Dri']) +
+    parseInt(player['Fin']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['OtB'])
+  const blue =
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Agi']) +
+    parseInt(player['Bal'])
+  player.ssa = ((key * 5 + green * 3 + blue * 1) / 44).toFixed(1)
   return player.ssa
 }
 
-function wideMidfielderDefend(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Pas']) + parseInt(player['Tck']) + parseInt(player['Cnt']) + parseInt(player['Dec']) + parseInt(player['Pos']) + parseInt(player['Tea']) )
-  const blue = ( parseInt(player['Cro']) + parseInt(player['Fir']) + parseInt(player['Mar']) + parseInt(player['Tec']) + parseInt(player['Ant']) + parseInt(player['Cmp']) )
-  player.wmd =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 44).toFixed(1)
+function wideMidfielderDefend(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Pas']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Tea'])
+  const blue =
+    parseInt(player['Cro']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Mar']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp'])
+  player.wmd = ((key * 5 + green * 3 + blue * 1) / 44).toFixed(1)
   return player.wmd
 }
 
-function wideMidfielderSupport(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Pas']) + parseInt(player['Tck']) + parseInt(player['Dec']) + parseInt(player['Tea']) )
-  const blue = ( parseInt(player['Cro']) + parseInt(player['Fir']) + parseInt(player['Tec']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['Cnt']) + parseInt(player['OtB']) + parseInt(player['Pos']) + parseInt(player['Vis']) )
-  player.wms =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 41).toFixed(1)
+function wideMidfielderSupport(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Pas']) +
+    parseInt(player['Tck']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Tea'])
+  const blue =
+    parseInt(player['Cro']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Pos']) +
+    parseInt(player['Vis'])
+  player.wms = ((key * 5 + green * 3 + blue * 1) / 41).toFixed(1)
   return player.wms
 }
 
-function wideMidfielderAttack(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Cro']) + parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Dec']) + parseInt(player['Tea']) )
-  const blue = ( parseInt(player['Tck']) + parseInt(player['Tec']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['OtB']) + parseInt(player['Vis']) )
-  player.wma =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 41).toFixed(1)
+function wideMidfielderAttack(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Cro']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Tea'])
+  const blue =
+    parseInt(player['Tck']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Vis'])
+  player.wma = ((key * 5 + green * 3 + blue * 1) / 41).toFixed(1)
   return player.wma
 }
 
-function widePlaymakerSupport(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Cmp']) + parseInt(player['Dec']) + parseInt(player['Tea']) + parseInt(player['Vis']) )
-  const blue = ( parseInt(player['Dri']) + parseInt(player['OtB']) + parseInt(player['Agi']) )
-  player.wps =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 44).toFixed(1)
+function widePlaymakerSupport(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Tea']) +
+    parseInt(player['Vis'])
+  const blue = parseInt(player['Dri']) + parseInt(player['OtB']) + parseInt(player['Agi'])
+  player.wps = ((key * 5 + green * 3 + blue * 1) / 44).toFixed(1)
   return player.wps
 }
 
-function widePlaymakerAttack(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Dri']) + parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Cmp']) + parseInt(player['Dec']) + parseInt(player['OtB']) + parseInt(player['Tea']) + parseInt(player['Vis']) )
-  const blue = ( parseInt(player['Ant']) + parseInt(player['Fla']) + parseInt(player['Agi']) )
-  player.wpa =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 50).toFixed(1)
+function widePlaymakerAttack(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Dri']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Dec']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Tea']) +
+    parseInt(player['Vis'])
+  const blue = parseInt(player['Ant']) + parseInt(player['Fla']) + parseInt(player['Agi'])
+  player.wpa = ((key * 5 + green * 3 + blue * 1) / 50).toFixed(1)
   return player.wpa
 }
 
-function wideTargetForwardSupport(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Hea']) + parseInt(player['Bra']) + parseInt(player['Tea']) + parseInt(player['Jum']) + parseInt(player['Str']) )
-  const blue = ( parseInt(player['Cro']) + parseInt(player['Fir']) + parseInt(player['Ant']) + parseInt(player['OtB']) + parseInt(player['Bal']) )
-  player.wtfs =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 40).toFixed(1)
+function wideTargetForwardSupport(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Hea']) +
+    parseInt(player['Bra']) +
+    parseInt(player['Tea']) +
+    parseInt(player['Jum']) +
+    parseInt(player['Str'])
+  const blue =
+    parseInt(player['Cro']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Ant']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Bal'])
+  player.wtfs = ((key * 5 + green * 3 + blue * 1) / 40).toFixed(1)
   return player.wtfs
 }
 
-function wideTargetForwardAttack(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Sta']) + parseInt(player['Wor']) )
-  const green = ( parseInt(player['Hea']) + parseInt(player['Bra']) + parseInt(player['OtB']) + parseInt(player['Jum']) + parseInt(player['Str']) )
-  const blue = ( parseInt(player['Cro']) + parseInt(player['Fin']) + parseInt(player['Fir']) + parseInt(player['Ant']) + parseInt(player['Tea']) + parseInt(player['Bal']) )
-  player.wtfa =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 41).toFixed(1)
+function wideTargetForwardAttack(player) {
+  const key =
+    parseInt(player['Acc']) +
+    parseInt(player['Pac']) +
+    parseInt(player['Sta']) +
+    parseInt(player['Wor'])
+  const green =
+    parseInt(player['Hea']) +
+    parseInt(player['Bra']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Jum']) +
+    parseInt(player['Str'])
+  const blue =
+    parseInt(player['Cro']) +
+    parseInt(player['Fin']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Tea']) +
+    parseInt(player['Bal'])
+  player.wtfa = ((key * 5 + green * 3 + blue * 1) / 41).toFixed(1)
   return player.wtfa
 }
 
@@ -1439,67 +2095,173 @@ function advancedForwardAttack(player) {
   return player.afa
 }
 
-function completeForwardSupport(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin']) )
-  const green = ( parseInt(player['Dri']) + parseInt(player['Fir']) + parseInt(player['Hea']) + parseInt(player['Lon']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['Dec']) + parseInt(player['OtB']) + parseInt(player['Vis']) + parseInt(player['Agi']) + parseInt(player['Str']) )
-  const blue = ( parseInt(player['Tea']) + parseInt(player['Wor']) + parseInt(player['Bal']) + parseInt(player['Jum']) + parseInt(player['Sta']) )
-  player.cfs =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 59).toFixed(1)
+function completeForwardSupport(player) {
+  const key = parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin'])
+  const green =
+    parseInt(player['Dri']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Hea']) +
+    parseInt(player['Lon']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Dec']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Vis']) +
+    parseInt(player['Agi']) +
+    parseInt(player['Str'])
+  const blue =
+    parseInt(player['Tea']) +
+    parseInt(player['Wor']) +
+    parseInt(player['Bal']) +
+    parseInt(player['Jum']) +
+    parseInt(player['Sta'])
+  player.cfs = ((key * 5 + green * 3 + blue * 1) / 59).toFixed(1)
   return player.cfs
 }
 
-function completeForwardAttack(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin']) )
-  const green = ( parseInt(player['Dri']) + parseInt(player['Fir']) + parseInt(player['Hea']) + parseInt(player['Tec']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['OtB']) + parseInt(player['Agi']) + parseInt(player['Str']) )
-  const blue = ( parseInt(player['Lon']) + parseInt(player['Pas']) + parseInt(player['Dec']) + parseInt(player['Tea']) + parseInt(player['Vis']) + parseInt(player['Wor']) + parseInt(player['Bal']) + parseInt(player['Jum']) + parseInt(player['Sta']) )
-  player.cfa =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 51).toFixed(1)
+function completeForwardAttack(player) {
+  const key = parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin'])
+  const green =
+    parseInt(player['Dri']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Hea']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Agi']) +
+    parseInt(player['Str'])
+  const blue =
+    parseInt(player['Lon']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Tea']) +
+    parseInt(player['Vis']) +
+    parseInt(player['Wor']) +
+    parseInt(player['Bal']) +
+    parseInt(player['Jum']) +
+    parseInt(player['Sta'])
+  player.cfa = ((key * 5 + green * 3 + blue * 1) / 51).toFixed(1)
   return player.cfa
 }
 
-function deepLyingForwardSupport(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin']) )
-  const green = ( parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Cmp']) + parseInt(player['Dec']) + parseInt(player['OtB']) + parseInt(player['Tea']) )
-  const blue = ( parseInt(player['Ant']) + parseInt(player['Fla']) + parseInt(player['Vis']) + parseInt(player['Bal']) + parseInt(player['Str']) )
-  player.dlfs =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 41).toFixed(1)
+function deepLyingForwardSupport(player) {
+  const key = parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin'])
+  const green =
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Dec']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Tea'])
+  const blue =
+    parseInt(player['Ant']) +
+    parseInt(player['Fla']) +
+    parseInt(player['Vis']) +
+    parseInt(player['Bal']) +
+    parseInt(player['Str'])
+  player.dlfs = ((key * 5 + green * 3 + blue * 1) / 41).toFixed(1)
   return player.dlfs
 }
 
-function deepLyingForwardAttack(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin']) )
-  const green = ( parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Cmp']) + parseInt(player['Dec']) + parseInt(player['OtB']) + parseInt(player['Tea']) )
-  const blue = ( parseInt(player['Dri']) + parseInt(player['Ant']) + parseInt(player['Fla']) + parseInt(player['Vis']) + parseInt(player['Bal']) + parseInt(player['Str']) )
-  player.dlfa =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 42).toFixed(1)
+function deepLyingForwardAttack(player) {
+  const key = parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin'])
+  const green =
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Dec']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Tea'])
+  const blue =
+    parseInt(player['Dri']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Fla']) +
+    parseInt(player['Vis']) +
+    parseInt(player['Bal']) +
+    parseInt(player['Str'])
+  player.dlfa = ((key * 5 + green * 3 + blue * 1) / 42).toFixed(1)
   return player.dlfa
 }
 
-function falseNineSupport(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin']) )
-  const green = ( parseInt(player['Dri']) + parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Cmp']) + parseInt(player['Dec']) + parseInt(player['OtB']) + parseInt(player['Vis']) + parseInt(player['Agi']) )
-  const blue = ( parseInt(player['Ant']) + parseInt(player['Fla']) + parseInt(player['Tea']) + parseInt(player['Bal']) )
-  player.f9s =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 46).toFixed(1)
+function falseNineSupport(player) {
+  const key = parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin'])
+  const green =
+    parseInt(player['Dri']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Dec']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Vis']) +
+    parseInt(player['Agi'])
+  const blue =
+    parseInt(player['Ant']) +
+    parseInt(player['Fla']) +
+    parseInt(player['Tea']) +
+    parseInt(player['Bal'])
+  player.f9s = ((key * 5 + green * 3 + blue * 1) / 46).toFixed(1)
   return player.f9s
 }
 
-function poacherAttack(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin']) )
-  const green = ( parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['OtB']) )
-  const blue = ( parseInt(player['Fir']) + parseInt(player['Hea']) + parseInt(player['Tec']) + parseInt(player['Dec']) )
-  player.pa =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 28).toFixed(1)
+function poacherAttack(player) {
+  const key = parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin'])
+  const green = parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['OtB'])
+  const blue =
+    parseInt(player['Fir']) +
+    parseInt(player['Hea']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Dec'])
+  player.pa = ((key * 5 + green * 3 + blue * 1) / 28).toFixed(1)
   return player.pa
 }
 
-function pressingForwardDefend(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin']) )
-  const green = ( parseInt(player['Agg']) + parseInt(player['Ant']) + parseInt(player['Bra']) + parseInt(player['Dec']) + parseInt(player['Tea']) + parseInt(player['Wor']) + parseInt(player['Sta']) )
-  const blue = ( parseInt(player['Fir']) + parseInt(player['Cmp']) + parseInt(player['Cnt']) + parseInt(player['Agi']) + parseInt(player['Bal']) + parseInt(player['Str']) )
-  player.pfd =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 42).toFixed(1)
+function pressingForwardDefend(player) {
+  const key = parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin'])
+  const green =
+    parseInt(player['Agg']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Bra']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Tea']) +
+    parseInt(player['Wor']) +
+    parseInt(player['Sta'])
+  const blue =
+    parseInt(player['Fir']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['Agi']) +
+    parseInt(player['Bal']) +
+    parseInt(player['Str'])
+  player.pfd = ((key * 5 + green * 3 + blue * 1) / 42).toFixed(1)
   return player.pfd
 }
 
-function pressingForwardSupport(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin']) )
-  const green = ( parseInt(player['Agg']) + parseInt(player['Ant']) + parseInt(player['Bra']) + parseInt(player['Dec']) + parseInt(player['Tea']) + parseInt(player['Wor']) + parseInt(player['Sta']) )
-  const blue = ( parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Cmp']) + parseInt(player['Cnt']) + parseInt(player['OtB']) + parseInt(player['Agi']) + parseInt(player['Bal']) + parseInt(player['Str']) )
-  player.pfs =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 44).toFixed(1)
+function pressingForwardSupport(player) {
+  const key = parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin'])
+  const green =
+    parseInt(player['Agg']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Bra']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Tea']) +
+    parseInt(player['Wor']) +
+    parseInt(player['Sta'])
+  const blue =
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Cnt']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Agi']) +
+    parseInt(player['Bal']) +
+    parseInt(player['Str'])
+  player.pfs = ((key * 5 + green * 3 + blue * 1) / 44).toFixed(1)
   return player.pfs
 }
 
@@ -1525,26 +2287,59 @@ function pressingForwardAttack(player) {
   return player.pfa
 }
 
-function targetForwardSupport(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin']) )
-  const green = ( parseInt(player['Hea']) + parseInt(player['Bra']) + parseInt(player['Tea']) + parseInt(player['Bal']) + parseInt(player['Jum']) + parseInt(player['Str']) )
-  const blue = ( parseInt(player['Fir']) + parseInt(player['Agg']) + parseInt(player['Ant']) + parseInt(player['Cmp']) + parseInt(player['Dec']) + parseInt(player['OtB']) )
-  player.tfs =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 39).toFixed(1)
+function targetForwardSupport(player) {
+  const key = parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin'])
+  const green =
+    parseInt(player['Hea']) +
+    parseInt(player['Bra']) +
+    parseInt(player['Tea']) +
+    parseInt(player['Bal']) +
+    parseInt(player['Jum']) +
+    parseInt(player['Str'])
+  const blue =
+    parseInt(player['Fir']) +
+    parseInt(player['Agg']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Dec']) +
+    parseInt(player['OtB'])
+  player.tfs = ((key * 5 + green * 3 + blue * 1) / 39).toFixed(1)
   return player.tfs
 }
 
-function targetForwardAttack(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin']) )
-  const green = ( parseInt(player['Hea']) + parseInt(player['Bra']) + parseInt(player['Cmp']) + parseInt(player['OtB']) + parseInt(player['Bal']) + parseInt(player['Jum']) + parseInt(player['Str']) )
-  const blue = ( parseInt(player['Fir']) + parseInt(player['Agg']) + parseInt(player['Ant']) + parseInt(player['Dec']) + parseInt(player['Tea']) )
-  player.tfa =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 41).toFixed(1)
+function targetForwardAttack(player) {
+  const key = parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin'])
+  const green =
+    parseInt(player['Hea']) +
+    parseInt(player['Bra']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Bal']) +
+    parseInt(player['Jum']) +
+    parseInt(player['Str'])
+  const blue =
+    parseInt(player['Fir']) +
+    parseInt(player['Agg']) +
+    parseInt(player['Ant']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Tea'])
+  player.tfa = ((key * 5 + green * 3 + blue * 1) / 41).toFixed(1)
   return player.tfa
 }
 
-function trequartistaAttack(player){
-  const key = ( parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin']) )
-  const green = ( parseInt(player['Dri']) + parseInt(player['Fir']) + parseInt(player['Pas']) + parseInt(player['Tec']) + parseInt(player['Cmp']) + parseInt(player['Dec']) + parseInt(player['Fla']) + parseInt(player['OtB']) + parseInt(player['Vis']) )
-  const blue = ( parseInt(player['Ant']) + parseInt(player['Agi']) + parseInt(player['Bal']) )
-  player.trea =( ( ( key * 5) + (green * 3) + (blue * 1) ) / 45).toFixed(1)
+function trequartistaAttack(player) {
+  const key = parseInt(player['Acc']) + parseInt(player['Pac']) + parseInt(player['Fin'])
+  const green =
+    parseInt(player['Dri']) +
+    parseInt(player['Fir']) +
+    parseInt(player['Pas']) +
+    parseInt(player['Tec']) +
+    parseInt(player['Cmp']) +
+    parseInt(player['Dec']) +
+    parseInt(player['Fla']) +
+    parseInt(player['OtB']) +
+    parseInt(player['Vis'])
+  const blue = parseInt(player['Ant']) + parseInt(player['Agi']) + parseInt(player['Bal'])
+  player.trea = ((key * 5 + green * 3 + blue * 1) / 45).toFixed(1)
   return player.trea
 }

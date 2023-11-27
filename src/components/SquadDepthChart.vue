@@ -18,49 +18,81 @@
         scrollable
         scrollHeight="flex"
         @rowReorder="onRowReorder"
-        editMode="cell" 
+        editMode="cell"
         @cell-edit-complete="onCellEditComplete"
       >
-        <Column v-if="props.editable" rowReorder headerStyle="width: 3rem" :reorderableColumn="false">
+        <Column
+          v-if="props.editable"
+          rowReorder
+          headerStyle="width: 3rem"
+          :reorderableColumn="false"
+        >
         </Column>
         <Column field="role" header="Role">
-          <template #body="{data, field}">
-            <Dropdown v-if="props.editable"
-                  v-model="data[field]"
-                  :options="roles"
-                  optionLabel="name"
-                  placeholder="Select a Role"
-                  class="w-full"
-                  filter
-                  @change="onRoleSelected(data, $event)"
-                />
-                <span v-else>{{ data[field]?.name }}</span>
+          <template #body="{ data, field }">
+            <Dropdown
+              v-if="props.editable"
+              v-model="data[field]"
+              :options="roles"
+              optionLabel="name"
+              placeholder="Select a Role"
+              class="w-full"
+              filter
+              @change="onRoleSelected(data, $event)"
+            />
+            <span v-else>{{ data[field]?.name }}</span>
           </template>
         </Column>
-        <Column field="starter" header="Starter"><template #body="{data}">
-          
-          <Dropdown v-if="props.editable"
-          v-model="data.starter"
-          :options="squadStore.squad"
-          optionLabel="Name"
-          placeholder="Select a Starter"
-          class="w-full"
-          filter
-          @change="onStarterSelected(data, $event)"
-        />                 <span v-else>{{ data.starter.Name  }}</span>
-</template></Column>
+        <Column field="starter" header="Starter"
+          ><template #body="{ data, field }">
+            <Dropdown
+              v-if="props.editable"
+              v-model="data[field]"
+              :options="squadStore.squad"
+              class="w-full"
+              filter
+              @change="onStarterSelected(data, $event)"
+            >
+              <template #value="slotProps">
+                <span v-if="data.starter">
+                  {{ data.starter.Name }}
+                </span>
+                <span v-else> Select a Starter </span>
+              </template>
+              <template #option="slotProps">
+                <div class="flex align-items-center">
+                  <div>{{ slotProps.option.Name }}</div>
+                </div>
+              </template>
+            </Dropdown>
+            <span v-else>{{ data.starter.Name }}</span>
+          </template></Column
+        >
         <Column field="starterRating" header="Rtg"></Column>
-        <Column field="backup" header="Backup"><template #body="{data}">
-          <Dropdown v-if="props.editable"
-          v-model="data.backup"
-          :options="squadStore.squad"
-          optionLabel="Name"
-          placeholder="Select a Backup"
-          class="w-full"
-          filter
-          @change="onBackupSelected(data, $event)"
-        />                 <span v-else>{{ data.backup.Name  }}</span>
-</template>
+        <Column field="backup" header="Backup"
+          ><template #body="{ data, field }">
+            <Dropdown
+              v-if="props.editable"
+              v-model="data[field]"
+              :options="squadStore.squad"
+              class="w-full"
+              filter
+              @change="onBackupSelected(data, $event)"
+            >
+              <template #value="slotProps">
+                <span v-if="data.starter">
+                  {{ data.backup.Name }}
+                </span>
+                <span v-else> Select a Backup </span>
+              </template>
+              <template #option="slotProps">
+                <div class="flex align-items-center">
+                  <div>{{ slotProps.option.Name }}</div>
+                </div>
+              </template>
+            </Dropdown>
+            <span v-else>{{ data.backup.Name }}</span>
+          </template>
         </Column>
         <Column field="backupRating" header="Rtg"></Column>
       </DataTable>
@@ -116,7 +148,7 @@
 <script setup>
 import { useSquadStore } from '../stores/squad'
 import { calculatePlayerAbilityForRole, allRoles } from '../utils/positionGradeCalculator'
-import { ref, defineProps } from 'vue'
+import { ref, defineProps, onMounted } from 'vue'
 
 const props = defineProps({
   editable: {
@@ -144,30 +176,28 @@ function sortStartersAndBackups() {
 
 const onRowReorder = (event) => {
   squadStore.startersAndBackups = event.value
-
 }
 
 const onCellEditComplete = (event) => {
-    let { data, newValue, field } = event;
+  let { data, newValue, field } = event
 
-    switch (field) {
-      default:
-        data[field] = newValue;
-    }
+  switch (field) {
+    default:
+      data[field] = newValue
   }
+}
 
-const onRoleSelected = (position) =>{
-  
-  if(position.starter){
-    onStarterSelected(position, {value:position.starter})
+const onRoleSelected = (position) => {
+  if (position.starter) {
+    onStarterSelected(position, { value: position.starter })
   }
-  if(position.backup){
-    onBackupSelected(position, {value:position.backup})
+  if (position.backup) {
+    onBackupSelected(position, { value: position.backup })
   }
 }
 
 const onStarterSelected = (position, player) => {
-  if(position.role){
+  if (position.role) {
     if (!player.value[position.role.value]) {
       calculatePlayerAbilityForRole(player.value, position.role.value)
     }
@@ -176,7 +206,7 @@ const onStarterSelected = (position, player) => {
 }
 
 const onBackupSelected = (position, player) => {
-  if(position.role){
+  if (position.role) {
     if (!player.value[position.role.value]) {
       calculatePlayerAbilityForRole(player.value, position.role.value)
     }

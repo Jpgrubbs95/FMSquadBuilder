@@ -1,8 +1,9 @@
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, getCurrentInstance } from 'vue'
 import { useLayout } from '@/layout/composables/layout'
 import { useRouter } from 'vue-router'
 import { usePrimeVue } from 'primevue/config'
+import Tours from '../components/Tours.vue'
 
 const { layoutConfig, onMenuToggle } = useLayout()
 
@@ -20,7 +21,9 @@ onBeforeUnmount(() => {
 })
 
 const logoUrl = computed(() => {
-  return `layout/images/${layoutConfig.darkTheme.value ? 'logo-white' : 'logo-dark'}.svg`
+  return `layout/images/${
+    layoutConfig.darkTheme.value ? 'soccer-ball-light' : 'soccer-ball-dark'
+  }.png`
 })
 
 const onTopBarMenuButton = () => {
@@ -38,6 +41,17 @@ const onChangeThemeClick = () => {
     })
   }
 }
+
+const { proxy } = getCurrentInstance()
+
+const onHelpClicked = () => {
+  if (router.currentRoute.value.name === 'scouting') {
+    console.log(proxy.$tours)
+    console.log(proxy.$tours['scoutingTour'])
+    proxy.$tours['scoutingTour'].start()
+  }
+}
+
 const topbarMenuClasses = computed(() => {
   return {
     'layout-topbar-menu-mobile-active': topbarMenuActive.value
@@ -94,6 +108,9 @@ const isOutsideClicked = (event) => {
     </button>
 
     <div class="layout-topbar-menu" :class="topbarMenuClasses">
+      <button @click="onHelpClicked" class="p-link layout-topbar-button">
+        <i class="pi pi-question" aria-label="help"></i>
+      </button>
       <a
         href="https://github.com/Jpgrubbs95/FMSquadBuilder"
         target="_blank"
@@ -113,6 +130,7 @@ const isOutsideClicked = (event) => {
       </button>
     </div>
   </div>
+  <Tours></Tours>
 </template>
 
 <style lang="scss" scoped></style>

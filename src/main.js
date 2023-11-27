@@ -4,6 +4,7 @@ import './assets/layout/layout.scss'
 import 'primevue/resources/primevue.min.css'
 import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.css'
+import 'vue3-tour/dist/vue3-tour.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -110,6 +111,7 @@ import TreeSelect from 'primevue/treeselect'
 import TreeTable from 'primevue/treetable'
 import TriStateCheckbox from 'primevue/tristatecheckbox'
 import VirtualScroller from 'primevue/virtualscroller'
+import Vue3Tour from 'vue3-tour'
 
 // import { inject } from '@vercel/analytics';
 
@@ -124,6 +126,7 @@ app.use(PrimeVue)
 app.use(ToastService)
 app.use(DialogService)
 app.use(ConfirmationService)
+app.use(Vue3Tour)
 
 app.directive('tooltip', Tooltip)
 app.directive('badge', BadgeDirective)
