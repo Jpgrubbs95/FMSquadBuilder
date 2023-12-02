@@ -9,6 +9,8 @@ export const useSquadStore = defineStore('squad', () => {
 
   const squadHeaders = useStorage('squadHeaders', {})
 
+  const wageUnits = useStorage('wageUnits', null)
+
   const startersAverage = computed(() => {
     if (startersAndBackups.value.length > 0) {
       let total = 0
@@ -53,16 +55,16 @@ export const useSquadStore = defineStore('squad', () => {
     let backupValuePlayer = ''
 
     for (let position of startersAndBackups.value) {
-      let dollarsPerRoleGrade = position.starter.dollars / parseFloat(position.starterRating)
+      let dollarsPerRoleGrade = position.starter?.dollars / parseFloat(position.starterRating)
       if (starterValue < 0 || dollarsPerRoleGrade < starterValue) {
         starterValue = dollarsPerRoleGrade
-        starterValuePlayer = position.starter.Name
+        starterValuePlayer = position.starter?.Name
       }
 
-      dollarsPerRoleGrade = position.backup.dollars / parseFloat(position.backupRating)
+      dollarsPerRoleGrade = position.backup?.dollars / parseFloat(position.backupRating)
       if (backupValue < 0 || dollarsPerRoleGrade < backupValue) {
         backupValue = dollarsPerRoleGrade
-        backupValuePlayer = position.backup.Name
+        backupValuePlayer = position.backup?.Name
       }
     }
     const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
@@ -77,7 +79,7 @@ export const useSquadStore = defineStore('squad', () => {
 
   const playerSalaryTotals = computed(() => {
     let keyPlayerTotal = 0
-    let squadPlayerTotal = 0
+    let regularStarterTotal = 0
     let backupPlayerTotal = 0
     let youthTotal = 0
 
@@ -91,7 +93,7 @@ export const useSquadStore = defineStore('squad', () => {
         player['Agreed Playing Time'] === 'Regular Starter' ||
         player['Agreed Playing Time'] === 'First-Choice Goalkeeper'
       ) {
-        squadPlayerTotal += player.dollars
+        regularStarterTotal += player.dollars
       } else if (
         player['Agreed Playing Time'] === 'Squad Player' ||
         player['Agreed Playing Time'] === 'Fringe Player' ||
@@ -106,7 +108,7 @@ export const useSquadStore = defineStore('squad', () => {
       // }
     }
 
-    return { keyPlayerTotal, squadPlayerTotal, backupPlayerTotal, youthTotal }
+    return { keyPlayerTotal, regularStarterTotal, backupPlayerTotal, youthTotal }
   })
 
   return {
@@ -117,6 +119,7 @@ export const useSquadStore = defineStore('squad', () => {
     backupsAverage,
     largestDropOff,
     bestValues,
-    playerSalaryTotals
+    playerSalaryTotals,
+    wageUnits
   }
 })

@@ -3,7 +3,7 @@
     <div class="col-6">
       <div class="grid">
         <div class="col-6">
-          <Card class="h-full">
+          <Card class="h-full" id="squad-tour-6">
             <template #title> Average Rating </template>
             <template #content>
               <div class="grid">
@@ -19,18 +19,18 @@
               <div class="grid mt-1">
                 <div class="col-12">
                   Best Starter Value: {{ squadStore.bestValues.starterPlayer }} at
-                  {{ squadStore.bestValues.starterDollarsPerRoleGrade }} p/a per position rating
+                  {{ squadStore.bestValues.starterDollarsPerRoleGrade }} {{squadStore.wageUnits}} per position rating
                 </div>
                 <div class="col-12">
                   Best Backup Value: {{ squadStore.bestValues.backupPlayer }} at
-                  {{ squadStore.bestValues.backupDollarsPerRoleGrade }} p/a per position rating
+                  {{ squadStore.bestValues.backupDollarsPerRoleGrade }} {{squadStore.wageUnits}} per position rating
                 </div>
               </div>
             </template>
           </Card>
         </div>
         <div class="col-6">
-          <Card class="h-full">
+          <Card class="h-full" id="squad-tour-7">
             <template #title>
               Largest Drop-off
               <Chip
@@ -55,7 +55,7 @@
       </div>
     </div>
     <div class="col-6">
-      <SquadBarChart></SquadBarChart>
+      <SquadBarChart id="squad-tour-8"></SquadBarChart>
     </div>
   </div>
 </template>
@@ -64,8 +64,20 @@
 import SquadBarChart from '../components/SquadBarChart.vue'
 import SquadDepthChart from '../components/SquadDepthChart.vue'
 import { useSquadStore } from '../stores/squad'
+import { getCurrentInstance, onMounted } from 'vue';
 
 const squadStore = useSquadStore()
+const { proxy } = getCurrentInstance();
+
+onMounted(() => {
+  if(proxy.$tours['squadTour']?.currentStep?.value === 5) {
+      proxy.$tours['squadTour'].nextStep()
+  }
+  if(proxy.$tours['squadDesignerTour']?.currentStep?.value === 2) {
+      proxy.$tours['squadDesignerTour'].nextStep()
+  }
+})
+
 </script>
 
 <style lang="scss">

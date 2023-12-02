@@ -1,9 +1,11 @@
 <script setup>
-import { ref, onBeforeMount, watch } from 'vue'
+import { ref, onBeforeMount, watch, getCurrentInstance } from 'vue'
 import { useRoute } from 'vue-router'
 import { useLayout } from '@/layout/composables/layout'
 
 const route = useRoute()
+
+const { proxy } = getCurrentInstance();
 
 const { layoutConfig, layoutState, setActiveMenuItem, onMenuToggle } = useLayout()
 
@@ -21,6 +23,10 @@ const props = defineProps({
     default: true
   },
   parentItemKey: {
+    type: String,
+    default: null
+  },
+  liId: {
     type: String,
     default: null
   }
@@ -77,7 +83,7 @@ const checkActiveRoute = (item) => {
 </script>
 
 <template>
-  <li :class="{ 'layout-root-menuitem': root, 'active-menuitem': isActiveMenu }">
+  <li :class="[{ 'layout-root-menuitem': root, 'active-menuitem': isActiveMenu }]" :id="item.liId">
     <div v-if="root && item.visible !== false" class="layout-menuitem-root-text">
       {{ item.label }}
     </div>

@@ -24,7 +24,7 @@ const squadStore = useSquadStore()
 
 const data = computed(() => {
   const keyPlayers = { wageCategory: 'Key Players', players: [] }
-  const squadPlayers = { wageCategory: 'Squad Players', players: [] }
+  const regularStarters = { wageCategory: 'Regular Starters', players: [] }
   const backupPlayers = { wageCategory: 'Backup Players', players: [] }
 
   for (let player of squadStore.squad) {
@@ -37,17 +37,17 @@ const data = computed(() => {
       player['Agreed Playing Time'] === 'Regular Starter' ||
       player['Agreed Playing Time'] === 'First-Choice Goalkeeper'
     ) {
-      squadPlayers.players.push(player)
+      regularStarters.players.push(player)
     } else {
       backupPlayers.players.push(player)
     }
   }
 
   calculateData(keyPlayers)
-  calculateData(squadPlayers)
+  calculateData(regularStarters)
   calculateData(backupPlayers)
 
-  return [keyPlayers, squadPlayers, backupPlayers]
+  return [keyPlayers, regularStarters, backupPlayers]
 })
 
 const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
@@ -67,8 +67,8 @@ function calculateData(playerData) {
     total += player.dollars
   }
 
-  playerData.average = formatter.format(total / playerData.players.length)
-  playerData.minimum = formatter.format(minimum)
-  playerData.maximum = formatter.format(maximum)
+  playerData.average = formatter.format(total / playerData.players.length) + ` ${squadStore.wageUnits}`
+  playerData.minimum = formatter.format(minimum) + ` ${squadStore.wageUnits}`
+  playerData.maximum = formatter.format(maximum) + ` ${squadStore.wageUnits}`
 }
 </script>

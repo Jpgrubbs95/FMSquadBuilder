@@ -46,9 +46,16 @@ const { proxy } = getCurrentInstance()
 
 const onHelpClicked = () => {
   if (router.currentRoute.value.name === 'scouting') {
-    console.log(proxy.$tours)
-    console.log(proxy.$tours['scoutingTour'])
     proxy.$tours['scoutingTour'].start()
+  }
+  if (router.currentRoute.value.name === 'home') {
+    proxy.$tours['squadTour'].start()
+  }
+  if (router.currentRoute.value.name === 'roleGrades') {
+    proxy.$tours['squadDesignerTour'].start()
+  }
+  if (router.currentRoute.value.name === 'squadAnalysis') {
+    proxy.$tours['squadAnalysisTour'].start()
   }
 }
 

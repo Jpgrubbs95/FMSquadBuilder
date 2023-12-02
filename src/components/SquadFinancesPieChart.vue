@@ -28,7 +28,7 @@ const setChartData = () => {
       {
         data: [
           squadStore.playerSalaryTotals.keyPlayerTotal,
-          squadStore.playerSalaryTotals.squadPlayerTotal,
+          squadStore.playerSalaryTotals.regularStarterTotal,
           squadStore.playerSalaryTotals.backupPlayerTotal,
           squadStore.playerSalaryTotals.youthTotal
         ],

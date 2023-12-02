@@ -1,5 +1,5 @@
 <template>
-  <div class="card h-full">
+  <div class="card h-full" v-bind="$attrs">
     <Chart type="bar" :data="chartData" :options="chartOptions" class="h-full" />
   </div>
 </template>

@@ -11,7 +11,19 @@
       </Card>
     </div>
     <div class="col-12 xl:col-6">
-      <SquadFinancesTable></SquadFinancesTable>
+      <div class="col-12">
+        <SquadFinancesTable></SquadFinancesTable>
+      </div>
+      <div class="col-12">
+        <Card>
+          <template #title>Wage Categories by Agreed Playing Time</template>
+          <template #content>
+            <p>Key Players = Star Player, Important Player</p>
+            <p>Regular Starters = Regular Starter, First-Choice Goalkeeper</p>
+            <p>Backup Players = Squad Player, Fringe Player, Backup</p>
+          </template>
+        </Card>
+      </div>
     </div>
   </div>
 </template>

@@ -12,8 +12,8 @@ const model = ref([
     label: 'Squad',
     items: [
       { label: 'Load Squad', icon: 'pi pi-fw pi-users', to: '/' },
-      { label: 'Squad Designer', icon: 'pi pi-fw pi-calculator', to: '/roleGrades' },
-      { label: 'Squad Analysis', icon: 'pi pi-fw pi-chart-line', to: '/squadAnalysis' },
+      { label: 'Squad Designer', icon: 'pi pi-fw pi-calculator', to: '/roleGrades', liId: 'squad-tour-2' },
+      { label: 'Squad Analysis', icon: 'pi pi-fw pi-chart-line', to: '/squadAnalysis', liId: 'squad-tour-5' },
       { label: 'Player Analysis', icon: 'pi pi-fw pi-user', to: '/playerAnalysis' },
       { label: 'Squad Finances', icon: 'pi pi-fw pi-money-bill', to: '/squadFinances' }
     ]

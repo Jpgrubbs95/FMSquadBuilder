@@ -5,11 +5,13 @@
         <span class="text-xl text-900 font-bold">Squad</span>
         <div class="flex justify-content-center flex-wrap gap-3">
           <Button
+            id="squad-tour-0"
             label="Download FM View"
             icon="pi pi-download"
             @click="onDownloadViewClick"
           ></Button>
           <FileUpload
+            id="squad-tour-1"
             mode="basic"
             name="demo[]"
             :maxFileSize="1000000"
@@ -52,10 +54,12 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, getCurrentInstance } from 'vue'
 import { useSquadStore } from '../stores/squad'
 
 const squadStore = useSquadStore()
+
+const { proxy } = getCurrentInstance();
 
 function onUpload(event) {
   var reader = new FileReader()
@@ -63,6 +67,9 @@ function onUpload(event) {
   reader.onload = function (evt) {
     var doc = new DOMParser().parseFromString(evt.target.result, 'text/html')
     parseTable(doc.firstChild.lastChild.children[1].firstElementChild)
+    if(proxy.$tours['squadTour']?.currentStep?.value === 1) {
+      proxy.$tours['squadTour'].nextStep()
+    }
   }
 }
 
@@ -77,7 +84,6 @@ const columns = computed(() => {
       })
     }
   }
-
   return columns
 })
 
@@ -88,7 +94,7 @@ const correctHeaders = {
   Age: 'Age',
   'Agreed Playing Time': 'Agreed Playing Time',
   Salary: 'Salary',
-  Wages: 'Wages',
+  Wage: 'Wage',
   'Transfer Value': 'Transfer Value',
   Nat: 'Nat',
   '2nd Nat': '2nd Nat',
@@ -147,16 +153,24 @@ function parseTable(table) {
   const headers = [...table.querySelectorAll('tbody > tr > th')].map((cell) => cell.innerText)
 
   const items = []
+  let wageUnits = '';
 
   for (const row of table.querySelectorAll('tbody > tr')) {
     const item = {}
-
     for (const [index, cell] of [...row.children].entries()) {
       item[headers[index]] = cell.innerText
     }
     if ('Salary' in item && typeof item['Salary'] === 'string' && item['Salary'] !== 'Salary') {
       try {
         item.dollars = parseInt(item['Salary'].replace(/[^\d.-]/g, ''))
+        wageUnits = item['Salary'].replace(/^([£€$]([0-9]([0-9,.])*))/,' ').trim();
+      } catch (e) {
+        console.error('Unable to parse salary value')
+      }
+    } else if ('Wage' in item && typeof item['Wage'] === 'string' && item['Wage'] !== 'Wage') {
+      try {
+        item.dollars = parseInt(item['Wage'].replace(/[^\d.-]/g, ''))
+        wageUnits = item['Wage'].replace(/^([£€$]([0-9]([0-9,.])*))/,' ').trim();
       } catch (e) {
         console.error('Unable to parse salary value')
       }
@@ -170,7 +184,8 @@ function parseTable(table) {
     }
   }
   squadStore.squad = items
-
+  squadStore.wageUnits = wageUnits;
+  squadStore.startersAndBackups = []
   for (let i = 0; i < 11; i++) {
     squadStore.startersAndBackups.push({
       order: i,
@@ -186,6 +201,10 @@ function parseTable(table) {
 }
 
 const onDownloadViewClick = () => {
+  console.log(proxy.$tours['squadTour']?.currentStep?.value)
+  if(proxy.$tours['squadTour']?.currentStep?.value === 0) {
+      proxy.$tours['squadTour'].nextStep()
+  }
   window.location.href = 'files/FMSquadBuilder-squad.fmf'
 }
 </script>

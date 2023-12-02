@@ -55,7 +55,7 @@
             >
               <template #value="slotProps">
                 <span v-if="data.starter">
-                  {{ data.starter.Name }}
+                  {{ data.starter?.Name }}
                 </span>
                 <span v-else> Select a Starter </span>
               </template>
@@ -65,7 +65,7 @@
                 </div>
               </template>
             </Dropdown>
-            <span v-else>{{ data.starter.Name }}</span>
+            <span v-else>{{ data.starter?.Name }}</span>
           </template></Column
         >
         <Column field="starterRating" header="Rtg"></Column>
@@ -81,7 +81,7 @@
             >
               <template #value="slotProps">
                 <span v-if="data.starter">
-                  {{ data.backup.Name }}
+                  {{ data.backup?.Name }}
                 </span>
                 <span v-else> Select a Backup </span>
               </template>
@@ -91,7 +91,7 @@
                 </div>
               </template>
             </Dropdown>
-            <span v-else>{{ data.backup.Name }}</span>
+            <span v-else>{{ data.backup?.Name }}</span>
           </template>
         </Column>
         <Column field="backupRating" header="Rtg"></Column>

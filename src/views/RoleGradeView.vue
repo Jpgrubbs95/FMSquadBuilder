@@ -1,7 +1,7 @@
 <template>
   <div class="grid">
     <div class="col">
-      <Card class="fullscreen-card">
+      <Card class="fullscreen-card" id="squad-tour-3">
         <template #title>
           <div class="flex flex-wrap align-items-center justify-content-between gap-2">
             <span class="text-xl text-900 font-bold">Role Grades</span>
@@ -47,6 +47,7 @@
 
     <div class="col">
       <SquadDepthChart
+        id="squad-tour-4"
         editable
         class="fullscreen-card"
         table-class="fullscreen-card-content"
@@ -56,7 +57,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { getCurrentInstance, onMounted, ref, watch } from 'vue'
 import { useSquadStore } from '../stores/squad'
 import { calculatePlayerAbilityForRole, allRoles } from '../utils/positionGradeCalculator'
 import SquadDepthChart from '../components/SquadDepthChart.vue'
@@ -64,6 +65,8 @@ import SquadDepthChart from '../components/SquadDepthChart.vue'
 const squadStore = useSquadStore()
 
 const roles = ref(allRoles)
+
+const {proxy} = getCurrentInstance();
 
 //Ratings table
 const selectedRoles = ref([])
@@ -103,6 +106,12 @@ watch(selectedRoles, () => {
       else if (parseFloat(a[sortField.value]) < parseFloat(b[sortField.value])) return 1
       else return 0
     })
+  }
+})
+
+onMounted(() => {
+  if(proxy.$tours['squadTour']?.currentStep?.value === 2) {
+      proxy.$tours['squadTour'].nextStep()
   }
 })
 </script>
