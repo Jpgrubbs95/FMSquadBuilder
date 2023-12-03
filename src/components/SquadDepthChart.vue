@@ -51,6 +51,7 @@
               :options="squadStore.squad"
               class="w-full"
               filter
+              :filterFields="['Name']"
               @change="onStarterSelected(data, $event)"
             >
               <template #value="slotProps">
@@ -77,10 +78,11 @@
               :options="squadStore.squad"
               class="w-full"
               filter
+              :filterFields="['Name']"
               @change="onBackupSelected(data, $event)"
             >
               <template #value="slotProps">
-                <span v-if="data.starter">
+                <span v-if="data.backup">
                   {{ data.backup?.Name }}
                 </span>
                 <span v-else> Select a Backup </span>
