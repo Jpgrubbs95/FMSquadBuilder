@@ -56,6 +56,7 @@
 <script setup>
 import { ref, computed, getCurrentInstance } from 'vue'
 import { useSquadStore } from '../stores/squad'
+import { calculatePlayerAbilityForRole } from '../utils/positionGradeCalculator';
 
 const squadStore = useSquadStore()
 
@@ -185,18 +186,47 @@ function parseTable(table) {
   }
   squadStore.squad = items
   squadStore.wageUnits = wageUnits;
-  squadStore.startersAndBackups = []
-  for (let i = 0; i < 11; i++) {
-    squadStore.startersAndBackups.push({
-      order: i,
-      role: null,
-      starter: null,
-      starterDollars: null,
-      starterRating: null,
-      backup: null,
-      backupDollars: null,
-      backupRating: null
-    })
+
+
+  if(squadStore.startersAndBackups.length === 0){
+    for (let i = 0; i < 11; i++) {
+      squadStore.startersAndBackups.push({
+        order: i,
+        role: null,
+        starter: null,
+        starterRating: null,
+        backup: null,
+        backupRating: null
+      })
+    }
+  } else {
+    for(let starterBackup of squadStore.startersAndBackups){
+      let starterUID = starterBackup.starter?.UID;
+      let backupUID = starterBackup.backup?.UID;
+
+      let updatedStarter = null;
+      let updatedBackup = null;
+
+      for(let player of squadStore.squad){
+        if(player.UID === starterUID) updatedStarter = player;
+        if(player.UID === backupUID) updatedBackup = player;
+      }
+
+      if(updatedStarter){
+        starterBackup.starter = updatedStarter
+        starterBackup.starterRating = calculatePlayerAbilityForRole(updatedStarter, starterBackup.role.value)
+      } else {
+        starterBackup.starter = null;
+        starterBackup.starterRating = null;
+      }
+      if(updatedBackup){
+        starterBackup.backup = updatedBackup
+        starterBackup.backupRating = calculatePlayerAbilityForRole(updatedBackup, starterBackup.role.value)
+      } else {
+        starterBackup.backup = null;
+        starterBackup.backupRating = null;
+      }
+    }
   }
 }
 

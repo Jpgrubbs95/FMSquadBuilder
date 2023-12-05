@@ -89,260 +89,175 @@ export const allRoles = [
 export function calculatePlayerAbilityForRole(player, role) {
   switch (role) {
     case 'gkd':
-      goalKeeperDefend(player)
-      return
+      return goalKeeperDefend(player)
     case 'skd':
-      sweeperKeeperDefend(player)
-      return
+      return sweeperKeeperDefend(player)
     case 'sks':
-      sweeperKeeperSupport(player)
-      return
+      return sweeperKeeperSupport(player)
     case 'ska':
-      sweeperKeeperAttack(player)
-      return
+      return sweeperKeeperAttack(player)
     case 'bpdd':
-      ballPlayingDefenderDefend(player)
-      return
+      return ballPlayingDefenderDefend(player)
     case 'bpdc':
-      ballPlayingDefenderCover(player)
-      return
+      return ballPlayingDefenderCover(player)
     case 'bpds':
-      ballPlayingDefenderStopper(player)
-      return
+      return ballPlayingDefenderStopper(player)
     case 'cdd':
-      centralDefenderDefend(player)
-      return
+      return centralDefenderDefend(player)
     case 'cds':
-      centralDefenderStopper(player)
-      return
+      return centralDefenderStopper(player)
     case 'cdc':
-      centralDefenderCover(player)
-      return
+      return centralDefenderCover(player)
     case 'cwbs':
-      completeWingBackSupport(player)
-      return
+      return completeWingBackSupport(player)
     case 'cwba':
-      completeWingBackAttack(player)
-      return
+      return completeWingBackAttack(player)
     case 'fbd':
-      fullBackDefend(player)
-      return
+      return fullBackDefend(player)
     case 'fbs':
-      fullBackSupport(player)
-      return
+      return fullBackSupport(player)
     case 'fba':
-      fullBackAttack(player)
-      return
+      return fullBackAttack(player)
     case 'ifbd':
-      invertedFullBackDefend(player)
-      return
+      return invertedFullBackDefend(player)
     case 'iwbd':
-      invertedWingbackDefend(player)
-      return
+      return invertedWingbackDefend(player)
     case 'iwbs':
-      invertedWingbackSupport(player)
-      return
+      return invertedWingbackSupport(player)
     case 'iwba':
-      invertedWingbackAttack(player)
-      return
+      return invertedWingbackAttack(player)
     case 'ld':
-      liberoDefend(player)
-      return
+      return liberoDefend(player)
     case 'ls':
-      liberoSupport(player)
-      return
+      return liberoSupport(player)
     case 'ncbd':
-      noNonsenseCenterBackDefend(player)
-      return
+      return noNonsenseCenterBackDefend(player)
     case 'ncbc':
-      noNonsenseCenterBackCover(player)
-      return
+      return noNonsenseCenterBackCover(player)
     case 'ncbs':
-      noNonsenseCenterBackStopper(player)
-      return
+      return noNonsenseCenterBackStopper(player)
     case 'nfbd':
-      noNonsenseFullBackDefend(player)
-      return
+      return noNonsenseFullBackDefend(player)
     case 'wcbd':
-      wideCenterBackDefend(player)
-      return
+      return wideCenterBackDefend(player)
     case 'wcbs':
-      wideCenterBackSupport(player)
-      return
+      return wideCenterBackSupport(player)
     case 'wcba':
-      wideCenterBackAttack(player)
-      return
+      return wideCenterBackAttack(player)
     case 'wbd':
-      wingBackDefend(player)
-      return
+      return wingBackDefend(player)
     case 'wbs':
-      wingBackSupport(player)
-      return
+      return wingBackSupport(player)
     case 'wba':
-      wingBackAttack(player)
-      return
+      return wingBackAttack(player)
     case 'aps':
-      advancedPlaymakerSupport(player)
-      return
+      return advancedPlaymakerSupport(player)
     case 'apa':
-      advancedPlaymakerAttack(player)
-      return
+      return advancedPlaymakerAttack(player)
     case 'ad':
-      anchorDefend(player)
-      return
+      return anchorDefend(player)
     case 'ams':
-      attackingMidfielderSupport(player)
-      return
+      return attackingMidfielderSupport(player)
     case 'ama':
-      attackingMidfielderAttack(player)
-      return
+      return attackingMidfielderAttack(player)
     case 'bwmd':
-      ballWinningMidfielderDefend(player)
-      return
+      return ballWinningMidfielderDefend(player)
     case 'bwms':
-      ballWinningMidfielderSupport(player)
-      return
+      return ballWinningMidfielderSupport(player)
     case 'bbms':
-      boxToBoxSupport(player)
-      return
+      return boxToBoxSupport(player)
     case 'cars':
-      carrileroSupport(player)
-      return
+      return carrileroSupport(player)
     case 'cmd':
-      centralMidfielderDefend(player)
-      return
+      return centralMidfielderDefend(player)
     case 'cms':
-      centralMidfielderSupport(player)
-      return
+      return centralMidfielderSupport(player)
     case 'cma':
-      centralMidfielderAttack(player)
-      return
+      return centralMidfielderAttack(player)
     case 'dlpd':
-      deepLyingPlaymakerDefend(player)
-      return
+      return deepLyingPlaymakerDefend(player)
     case 'dlps':
-      deepLyingPlaymakerSupport(player)
-      return
+      return deepLyingPlaymakerSupport(player)
     case 'dmd':
-      defensiveMidfielderDefend(player)
-      return
+      return defensiveMidfielderDefend(player)
     case 'dms':
-      defensiveMidfielderSupport(player)
-      return
+      return defensiveMidfielderSupport(player)
     case 'dwd':
-      defensiveWingerDefend(player)
-      return
+      return defensiveWingerDefend(player)
     case 'dws':
-      defensiveWingerSupport(player)
-      return
+      return defensiveWingerSupport(player)
     case 'engs':
-      engancheSupport(player)
-      return
+      return engancheSupport(player)
     case 'hbd':
-      halfBackDefend(player)
-      return
+      return halfBackDefend(player)
     case 'ifs':
-      insideForwardSupport(player)
-      return
+      return insideForwardSupport(player)
     case 'ifa':
-      insideForwardAttack(player)
-      return
+      return insideForwardAttack(player)
     case 'iws':
-      invertedWingerSupport(player)
-      return
+      return invertedWingerSupport(player)
     case 'iwa':
-      invertedWingerAttack(player)
-      return
+      return invertedWingerAttack(player)
     case 'mezs':
-      mezzalaSupport(player)
-      return
+      return mezzalaSupport(player)
     case 'meza':
-      mezzalaAttack(player)
-      return
+      return mezzalaAttack(player)
     case 'raua':
-      raumdeuterAttack(player)
-      return
+      return raumdeuterAttack(player)
     case 'regs':
-      registaSupport(player)
-      return
+      return registaSupport(player)
     case 'rps':
-      roamingPlaymakerSupport(player)
-      return
+      return roamingPlaymakerSupport(player)
     case 'svs':
-      segundoVolanteSupport(player)
-      return
+      return segundoVolanteSupport(player)
     case 'sva':
-      segundoVolanteAttack(player)
-      return
+      return segundoVolanteAttack(player)
     case 'ssa':
-      shadowStrikerAttack(player)
-      return
+      return shadowStrikerAttack(player)
     case 'wmd':
-      wideMidfielderDefend(player)
-      return
+      return wideMidfielderDefend(player)
     case 'wms':
-      wideMidfielderSupport(player)
-      return
+      return wideMidfielderSupport(player)
     case 'wma':
-      wideMidfielderAttack(player)
-      return
+      return wideMidfielderAttack(player)
     case 'wps':
-      widePlaymakerSupport(player)
-      return
+      return widePlaymakerSupport(player)
     case 'wpa':
-      widePlaymakerAttack(player)
-      return
+      return widePlaymakerAttack(player)
     case 'wtfs':
-      wideTargetForwardSupport(player)
-      return
+      return wideTargetForwardSupport(player)
     case 'wtfa':
-      wideTargetForwardAttack(player)
-      return
+      return wideTargetForwardAttack(player)
     case 'ws':
-      wingerSupport(player)
-      return
+      return wingerSupport(player)
     case 'wa':
-      wingerAttack(player)
-      return
+      return wingerAttack(player)
     case 'afa':
-      advancedForwardAttack(player)
-      return
+      return advancedForwardAttack(player)
     case 'cfs':
-      completeForwardSupport(player)
-      return
+      return completeForwardSupport(player)
     case 'cfa':
-      completeForwardAttack(player)
-      return
+      return completeForwardAttack(player)
     case 'dlfs':
-      deepLyingForwardSupport(player)
-      return
+      return deepLyingForwardSupport(player)
     case 'dlfa':
-      deepLyingForwardAttack(player)
-      return
+      return deepLyingForwardAttack(player)
     case 'f9s':
-      falseNineSupport(player)
-      return
+      return falseNineSupport(player)
     case 'pa':
-      poacherAttack(player)
-      return
+      return poacherAttack(player)
     case 'pfd':
-      pressingForwardDefend(player)
-      return
+      return pressingForwardDefend(player)
     case 'pfs':
-      pressingForwardSupport(player)
-      return
+      return pressingForwardSupport(player)
     case 'pfa':
-      pressingForwardAttack(player)
-      return
+      return pressingForwardAttack(player)
     case 'tfs':
-      targetForwardSupport(player)
-      return
+      return targetForwardSupport(player)
     case 'tfa':
-      targetForwardAttack(player)
-      return
+      return targetForwardAttack(player)
     case 'trea':
-      trequartistaAttack(player)
-      return
+      return trequartistaAttack(player)
   }
 }
 
@@ -1608,6 +1523,7 @@ function insideForwardSupport(player) {
 }
 
 function insideForwardAttack(player) {
+  debugger
   const key =
     parseInt(player['Acc']) +
     parseInt(player['Pac']) +
